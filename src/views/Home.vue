@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <el-button type="danger">{{ msg }}</el-button>
     <img alt="Vue logo" src="../assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
   </div>
@@ -13,6 +14,11 @@ export default {
   name: 'Home',
   components: {
     HelloWorld
+  },
+  data(){
+    return{
+      msg:"helloooooooooo!"
+    }
   }
 }
 </script>
