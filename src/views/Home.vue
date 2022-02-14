@@ -119,7 +119,7 @@ export default {
     return {
       tableData:[],
       pageNum: 1,
-      pagesize: 5,
+      pagesize: 10,
       collapseBtnClass:'el-icon-s-fold',
       isCollapse:false,
       sideWidth: 200,
@@ -134,7 +134,14 @@ export default {
     load(){
       var that = this;
       axios({
-        url: "http://localhost:9090/selectPageUser?pageNum=" + this.pageNum + "&pageSize=" + this.pagesize,
+        url: "http://localhost:9090/selectPageUser",
+        params:{
+          pageNum: this.pageNum,
+          pageSize: this.pagesize,
+        },
+        headers: {
+          "Content-type": "application/json;charset=utf-8"
+        },
         method: "get",
       }).then(function (response) {
         that.total = response.data.total;
