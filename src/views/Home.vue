@@ -74,7 +74,7 @@
             <el-button class="ml-5" type="primary">搜素</el-button>
           </div>
           <div style="margin: 10px 0">
-            <el-button type="primary">新增<i class="el-icon-circle-plus-outline"></i></el-button>
+            <el-button type="primary" @click="dialogFormVisible = true , form = {}">新增<i class="el-icon-circle-plus-outline"></i></el-button>
             <el-button type="danger">批量删除<i class="el-icon-remove-outline"></i></el-button>
             <el-button type="primary">导入<i class="el-icon-bottom"></i></el-button>
             <el-button type="primary">导出<i class="el-icon-top"></i></el-button>
@@ -102,6 +102,26 @@
                 :total="total">
             </el-pagination>
           </div>
+          <el-dialog title="新增" :visible.sync="dialogFormVisible" width="30%">
+            <el-form :model="form" label-width="80px">
+              <el-form-item label="活动名称" >
+                <el-input v-model="form.userId" autocomplete="off"></el-input>
+              </el-form-item>
+              <el-form-item label="活动名称">
+                <el-input v-model="form.userEmail"></el-input>
+              </el-form-item>
+              <el-form-item label="活动名称" >
+                <el-input v-model="form.userPhone" autocomplete="off"></el-input>
+              </el-form-item>
+              <el-form-item label="活动名称" >
+                <el-input v-model="form.userPassword" autocomplete="off"></el-input>
+              </el-form-item>
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+              <el-button @click="dialogFormVisible = false">取 消</el-button>
+              <el-button type="primary" @click="save">确 定</el-button>
+            </div>
+          </el-dialog>
         </el-main>
       </el-container>
     </el-container>
@@ -125,6 +145,14 @@ export default {
       sideWidth: 200,
       isShow: true,
       total: 0,
+      form: {
+        userId:"",
+        userPassword:"",
+        userEmail:"",
+        userPhone:"",
+      },
+      dialogFormVisible : false,
+
     }
   },
   created() {
@@ -169,7 +197,22 @@ export default {
     handleCurrentChange(pageNum){
       this.pageNum = pageNum;
       this.load();
+    },
+    save(){
+      var that = this;
+      axios({
+        url: "http://localhost:9090/add",
+        data:{
+          userId: this.form.userId,
+          userPassword: this.form.userPassword,
+          userEmail: this.form.userEmail,
+          userPhone: this.form.userPhone,
+        },
+        method: "post",
+      });
+      that.dialogFormVisible = false;
     }
   }
+
 }
 </script>
