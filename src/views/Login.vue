@@ -1,34 +1,42 @@
 <template>
   <el-container>
     <el-main>
-      <el-card class="box-card">
-        <div v-show="isLogin">
-          <el-form label-width="80px">
-            <el-form-item label="用户名">
-              <el-input v-model="userName" style="width: 140px"></el-input>
-            </el-form-item>
-            <el-form-item label="密码" >
-              <el-input v-model="password" style="width: 140px"></el-input>
-            </el-form-item>
-          </el-form>
-          <el-button type="primary" @click="toRegister">没有账号，我要注册</el-button>
-          <el-button type="primary" @click="login">登 录</el-button>
-        </div>
-        <div v-show="isRegister">
-          <el-form label-width="80px" >
-            <el-form-item label="手机号">
-              <el-input v-model="userName" style="width: 140px"></el-input>
-            </el-form-item>
-            <el-form-item label="密码" >
-              <el-input v-model="password" style="width: 140px"></el-input>
-            </el-form-item>
-            <el-form-item label="确认密码" >
-              <el-input v-model="confirm_password" style="width: 140px"></el-input>
-            </el-form-item>
-          </el-form>
-          <el-button type="primary" @click="register">注 册</el-button>
-        </div>
-      </el-card>
+      <div v-show="isLogin">
+        <el-form label-width="80px" class="login-box">
+          <h3 class="login-title">欢迎登录</h3>
+          <el-form-item label="用户名">
+            <el-input v-model="userName"></el-input>
+          </el-form-item>
+<!--          <el-form-item label="账号" prop="username">-->
+<!--            <el-input type="text" placeholder="请输入账号" v-model="form.username"/>-->
+<!--          </el-form-item>-->
+          <el-form-item label="密码" >
+            <el-input v-model="password"></el-input>
+          </el-form-item>
+          <el-form-item>
+            <a @click="toRegister">没有账号，我要注册</a>
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary" size="big" @click="login">登 录</el-button>
+          </el-form-item>
+        </el-form>
+      </div>
+      <div v-show="isRegister">
+        <el-form label-width="80px"  class="login-box">
+          <el-form-item label="手机号">
+            <el-input v-model="userName" style="width: 140px"></el-input>
+          </el-form-item>
+          <el-form-item label="密码" >
+            <el-input v-model="password" style="width: 140px"></el-input>
+          </el-form-item>
+          <el-form-item label="确认密码" >
+            <el-input v-model="confirm_password" style="width: 140px"></el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary" size="big" @click="register">注 册</el-button>
+          </el-form-item>
+        </el-form>
+      </div>
     </el-main>
   </el-container>
 </template>
@@ -133,15 +141,21 @@ export default {
 </script>
 
 <style scoped>
-.text {
-  font-size: 14px;
+
+.login-box {
+  border: 1px solid #DCDFE6;
+  width: 350px;
+  margin: 180px auto;
+  padding: 35px 35px 15px 35px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  box-shadow: 0 0 25px #909399;
 }
 
-.item {
-  padding: 18px 0;
-}
-
-.box-card {
-  width: 480px;
+.login-title {
+  text-align: center;
+  margin: 0 auto 40px auto;
+  color: #303133;
 }
 </style>
