@@ -4,17 +4,14 @@
       <div v-show="isLogin">
         <el-form label-width="80px" class="login-box">
           <h3 class="login-title">欢迎登录</h3>
-          <el-form-item label="用户名">
+          <el-form-item label="用户名 :">
             <el-input v-model="userName"></el-input>
           </el-form-item>
-<!--          <el-form-item label="账号" prop="username">-->
-<!--            <el-input type="text" placeholder="请输入账号" v-model="form.username"/>-->
-<!--          </el-form-item>-->
-          <el-form-item label="密码" >
+          <el-form-item label="密码 :" >
             <el-input v-model="password"></el-input>
           </el-form-item>
-          <el-form-item>
-            <a @click="toRegister">没有账号，我要注册</a>
+          <el-form-item style="text-align: right">
+            <a style="cursor: pointer" @click="toRegister" >没有账号，我要注册</a>
           </el-form-item>
           <el-form-item>
             <el-button type="primary" size="big" @click="login">登 录</el-button>
@@ -23,14 +20,15 @@
       </div>
       <div v-show="isRegister">
         <el-form label-width="80px"  class="login-box">
-          <el-form-item label="手机号">
-            <el-input v-model="userName" style="width: 140px"></el-input>
+          <h3 class="login-title">欢迎注册</h3>
+          <el-form-item label="手机号 :">
+            <el-input v-model="userName"></el-input>
           </el-form-item>
-          <el-form-item label="密码" >
-            <el-input v-model="password" style="width: 140px"></el-input>
+          <el-form-item label="密码 :" >
+            <el-input v-model="password"></el-input>
           </el-form-item>
-          <el-form-item label="确认密码" >
-            <el-input v-model="confirm_password" style="width: 140px"></el-input>
+          <el-form-item label="确认密码 :" >
+            <el-input v-model="confirm_password"></el-input>
           </el-form-item>
           <el-form-item>
             <el-button type="primary" size="big" @click="register">注 册</el-button>
