@@ -62,7 +62,7 @@ export default {
     checkPhone: function () {
       var res = true;
       var regex = /^(13[0-9]{9})|(15[0-9]{9})|(17[0-9]{9})|(18[0-9]{9})|(19[0-9]{9})$/;
-      if ( this.userName.match(regex)){
+      if ( !this.userName.match(regex)){
         res = false;
         this.$message({
           message: '手机号格式错误！',
@@ -93,7 +93,7 @@ export default {
     },
     register: function () {
       var that = this;
-      if ( this.checkPhone() || this.checkPassword() ){
+      if ( this.checkPhone() && this.checkPassword() ){
         axios({
           url: "http://localhost:9090/register",
           method: "post",
