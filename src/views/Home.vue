@@ -125,6 +125,8 @@
         </el-main>
       </el-container>
     </el-container>
+    <router-link to="/login">登 录</router-link>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -211,6 +213,9 @@ export default {
         method: "post",
       });
       that.dialogFormVisible = false;
+    },
+    toLogin(){
+      this.$router.push('/login')
     }
   }
 
