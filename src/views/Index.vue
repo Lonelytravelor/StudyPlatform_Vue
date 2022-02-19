@@ -6,35 +6,54 @@
         <el-menu-item index="/">课程</el-menu-item>
         <el-menu-item index="/">学校</el-menu-item>
       </el-menu>
-      <span>王小虎</span><i class="el-icon-arrow-down" style="margin-left: 5px"></i>
     </el-header>
-    <el-dialog title="收货地址" :visible.sync="dialogFormVisible" width="35%" >
-      <el-form :model="form" label-width="80px">
-        <el-form-item label="活动名称">
-          <el-input v-model="form.userEmail" style="width: 140px"></el-input>
-        </el-form-item>
-        <el-form-item label="活动名称" >
-          <el-input v-model="form.userPhone" style="width: 140px"></el-input>
-        </el-form-item>
-      </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogFormVisible = false">取 消</el-button>
-        <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
-      </div>
-    </el-dialog>
-    <el-button type="text" @click="dialogFormVisible = true">打开嵌套表单的 Dialog</el-button>
+    <el-row>
+      <el-col :span="3" v-for="item in courses" :key="item.courseId">
+        <el-card :body-style="{ padding: '0px' }" shadow="hover" style=" margin-left: 11px">
+          <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">
+          <div style="padding: 14px;">
+            <span>{{ item.courseName }}</span><br/>
+            <span>{{ item.courseTeacher }}</span>
+            <div>
+              <p style="font-family: 微软雅黑"> {{ item.courseInstitution }}</p>
+              <el-button type="text" class="button">操作按钮</el-button>
+            </div>
+          </div>
+        </el-card>
+      </el-col>
+    </el-row>
   </el-container>
+<!--  <div>-->
+<!--    <table>-->
+<!--      <tr v-for="item in courses" :key="item.courseId">-->
+<!--        <td>{{}}</td>-->
+<!--        <td>{{item}}</td>-->
+<!--      </tr>-->
+<!--    </table>-->
+<!--  </div>-->
 
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "Index",
   data() {
     return {
       dialogFormVisible : false,
-      form: {}
+      form: {},
+      courses: [],
     }
+  },
+  created() {
+    const that = this;
+    axios({
+      url: "http://localhost:9090/loadCourse",
+      method: "get",
+    }).then(function (response) {
+      that.courses = response.data;
+    })
   }
 }
 </script>
@@ -72,5 +91,30 @@ body > .el-container {
 
 .el-container:nth-child(7) .el-aside {
   line-height: 320px;
+}
+
+.bottom {
+  margin-top: 13px;
+  line-height: 12px;
+}
+
+.button {
+  padding: 0;
+  float: right;
+}
+
+.image {
+  width: 100%;
+  display: block;
+}
+
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+}
+
+.clearfix:after {
+  clear: both
 }
 </style>
