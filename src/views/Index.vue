@@ -5,6 +5,8 @@
         <el-menu-item index="/">首页</el-menu-item>
         <el-menu-item index="/">课程</el-menu-item>
         <el-menu-item index="/">学校</el-menu-item>
+        <el-button type="danger" @click="toLogin" v-if="userId == null">登录/注册</el-button>
+        <el-button type="primary" @click="toLogin" v-if="userId != null"> {{ userId }}</el-button>
       </el-menu>
     </el-header>
     <el-row>
@@ -40,6 +42,7 @@ import axios from "axios";
 
 export default {
   name: "Index",
+  props: ['userId'],
   data() {
     return {
       dialogFormVisible : false,
@@ -59,6 +62,9 @@ export default {
   methods:{
     toCourseIndex:function (courseId) {
       this.$router.push('/CourseIndex/' + courseId);
+    },
+    toLogin: function () {
+      this.$router.push('/Login');
     }
   }
 }

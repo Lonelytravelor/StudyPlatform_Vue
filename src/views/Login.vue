@@ -41,6 +41,7 @@
 
 <script>
 import axios from "axios";
+import router from "@/router";
 
 export default {
   name: "About",
@@ -106,9 +107,9 @@ export default {
         },
       }).then(function (response){
         if ( response.data ){
-          alert("Success");
+          router.push('//' + that.userName)
         }else {
-          alert("Fail");
+          alert("fail")
         }
       })
     },
