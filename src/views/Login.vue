@@ -18,7 +18,7 @@
           </el-form-item>
         </el-form>
       </div>
-      <div v-show="isRegister">
+      <div v-show="!isLogin">
         <el-form label-width="80px"  class="login-box">
           <h3 class="login-title">欢迎注册</h3>
           <el-form-item label="手机号 :">
@@ -51,13 +51,11 @@ export default {
       password: "",
       confirm_password: "",
       isLogin: true,
-      isRegister: false,
     }
   },
   methods: {
     toRegister: function () {
       this.isLogin = false
-      this.isRegister = true
     },
     checkPassword: function () {
       var res = true;
@@ -128,9 +126,10 @@ export default {
           },
         }).then(function (response){
           if ( response.data ){
-            alert("Success");
+            alert("注册成功，请登录");
+            that.isLogin = !that.isLogin;
           }else {
-            alert("Fail");
+            alert("用户名已被注册！");
           }
         })
       }
