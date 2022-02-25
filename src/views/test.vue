@@ -1,17 +1,18 @@
 <template>
   <div>
     <el-card class="box-card">
-      <div v-for="(question, index) in questions" :key="question.natureTestId" class="text item">
-        <div slot="header" class="clearfix">
-          <span>{{ question.natureTest }}</span>
-        </div>
+      <div v-for="(question, index) in questions" class="text item" :key="question.natureTestId">
+        <span>{{ question.natureTest }}</span>
         <br>
-        <el-radio-group @change="hello" v-model="index">
-          <el-radio :label="question.optionA" ></el-radio>
-          <el-radio :label="question.optionB" ></el-radio>
+        <el-radio-group v-model="answers[index]">
+          <el-radio label="a">{{ question.optionA }}</el-radio>
+          <el-radio label="b">{{ question.optionB }}</el-radio>
         </el-radio-group>
       </div>
     </el-card>
+    <el-button @click="onSubmit">
+      提交
+    </el-button>
   </div>
 </template>
 
@@ -22,8 +23,10 @@ export default {
   name: "test",
   data () {
     return {
+      answers: [],
       radio: 1,
       questions : [],
+      style: "",
     };
   },
   created() {
@@ -33,14 +36,18 @@ export default {
       method: "get",
     }).then(function (response) {
       that.questions = response.data;
+      console.log(response.data)
     })
   },
   methods: {
     onSubmit: function () {
-      console.log(this.questions)
-    },
-    hello:function (e) {
-      console.log(e)
+      axios({
+        url:"http://localhost:9090/updateNatureTest",
+        method: "post",
+        data: {
+          answers : this.answers
+        }
+      })
     }
   }
 }

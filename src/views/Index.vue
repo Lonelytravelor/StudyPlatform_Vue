@@ -1,31 +1,21 @@
 <template>
-  <el-container>
-    <el-header >
-      <el-menu  class="el-menu-demo nav" mode="horizontal" router text-color="#000000" style="width: 60% ;margin-left: 30%">
-        <el-menu-item index="/">首页</el-menu-item>
-        <el-menu-item index="/">课程</el-menu-item>
-        <el-menu-item index="/">学校</el-menu-item>
-        <el-button type="danger" @click="toLogin" v-if="userId == null">登录/注册</el-button>
-        <el-button type="primary" @click="toLogin" v-if="userId != null"> {{ userId }}</el-button>
-      </el-menu>
-    </el-header>
+  <div style="width: 60%; margin-left: 20%; margin-top: 20px">
     <el-row>
-      <el-col :span="3" v-for="item in courses" :key="item.courseId">
+      <el-col :span="4" v-for="item in courses" :key="item.courseId">
         <el-card :body-style="{ padding: '0px' }" shadow="hover" style=" margin-left: 11px">
           <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
                class="image" @click="toCourseIndex(item.courseId)">
           <div style="padding: 14px;">
-            <span>{{ item.courseName }}</span><br/>
-            <span>{{ item.courseTeacher }}</span>
+            <span><p style="font-family: 微软雅黑; font-size: 13px"> {{ item.courseName }}</p></span>
+            <span><p style="font-family: 微软雅黑; font-size: 10px"> {{ item.courseTeacher }}</p></span>
             <div>
-              <p style="font-family: 微软雅黑"> {{ item.courseInstitution }}</p>
-              <el-button type="text" class="button">操作按钮</el-button>
+              <p style="font-family: 微软雅黑; font-size: 10px"> {{ item.courseInstitution }}</p>
             </div>
           </div>
         </el-card>
       </el-col>
     </el-row>
-  </el-container>
+  </div>
 <!--  <div>-->
 <!--    <table>-->
 <!--      <tr v-for="item in courses" :key="item.courseId">-->
@@ -65,32 +55,15 @@ export default {
     },
     toLogin: function () {
       this.$router.push('/Login');
+    },
+    toPersonCenter(){
+      this.$router.push('/PersonCerter/' + this.userId);
     }
   }
 }
 </script>
 
 <style scoped>
-.el-header, .el-footer {
-  background-color: #ffffff;
-  color: #333;
-  line-height: 60px;
-  box-sizing: border-box;
-}
-
-.el-aside {
-  background-color: #D3DCE6;
-  color: #333;
-  text-align: center;
-  line-height: 200px;
-}
-
-.el-main {
-  background-color: #E9EEF3;
-  color: #333;
-  text-align: center;
-  line-height: 160px;
-}
 
 body > .el-container {
   margin-bottom: 40px;
@@ -105,10 +78,6 @@ body > .el-container {
   line-height: 320px;
 }
 
-.bottom {
-  margin-top: 13px;
-  line-height: 12px;
-}
 
 .button {
   padding: 0;
@@ -120,13 +89,9 @@ body > .el-container {
   display: block;
 }
 
-.clearfix:before,
-.clearfix:after {
-  display: table;
-  content: "";
+.header-right {
+  float: right ;
+  margin-top: 15px;
 }
 
-.clearfix:after {
-  clear: both
-}
 </style>

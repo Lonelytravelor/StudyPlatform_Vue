@@ -7,42 +7,28 @@ import CourseIndex from "@/views/CourseIndex";
 import test from "@/views/test";
 import NatureTest from "@/views/NatureTest";
 import PersonCerter from "@/views/PersonCerter";
+import Home from "@/components/Home";
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '//:userId?',
-    name: 'Index',
-    component: Index,
-    props: true,
+    path: '/',
+    redirect: '/index'
   },
   {
-    path: '/Login',
-    name: 'Login',
-    component: Login
+    path: '/',
+    component: Home,
+    children:[
+      {
+        path: '/index',
+        component: Index,
+      },
+    ]
   },
   {
-    path: '/PersonCerter/:userId',
-    name: 'PersonCerter',
-    component: PersonCerter,
-    props: true,
-  },
-  {
-    path: '/Test',
-    name: 'Test',
-    component: test,
-  },
-  {
-    path: '/NatureTest',
-    name: 'NatureTest',
-    component: NatureTest,
-  },
-  {
-    path: '/CourseIndex/:courseId',
-    name: 'CourseIndex',
-    component: CourseIndex,
-    props: true,
+    path: '/test',
+    component: test
   },
   {
     path: '*',
