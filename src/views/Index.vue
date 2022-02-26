@@ -1,6 +1,8 @@
 <template>
-  <div style="width: 60%; margin-left: 20%; margin-top: 20px">
-    <el-row>
+  <div style="margin-top: 20px">
+    <p style="font-size: 24px;margin-left: 10px">国家精品课</p>
+    <hr style="color: #0033b0;margin-left: 10px"/>
+    <el-row style="margin-top: 5px">
       <el-col :span="4" v-for="item in courses" :key="item.courseId">
         <el-card :body-style="{ padding: '0px' }" shadow="hover" style=" margin-left: 11px">
           <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
@@ -16,15 +18,6 @@
       </el-col>
     </el-row>
   </div>
-<!--  <div>-->
-<!--    <table>-->
-<!--      <tr v-for="item in courses" :key="item.courseId">-->
-<!--        <td>{{}}</td>-->
-<!--        <td>{{item}}</td>-->
-<!--      </tr>-->
-<!--    </table>-->
-<!--  </div>-->
-
 </template>
 
 <script>

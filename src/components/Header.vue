@@ -2,10 +2,10 @@
   <el-container>
     <el-header>
       <el-menu  class="el-menu-demo nav" mode="horizontal" router text-color="#000000" style="width: 60% ;margin-left: 20%">
-        <el-menu-item index="/">首页</el-menu-item>
-        <el-menu-item index="/">课程</el-menu-item>
-        <el-menu-item index="/">学校</el-menu-item>
-        <el-button round class="header-right" type="danger" @click="toLogin" v-if="userId == null">登录/注册</el-button>
+        <el-menu-item index="/" style="font-size: 16px">首页</el-menu-item>
+        <el-menu-item index="/" style="font-size: 16px">课程</el-menu-item>
+        <el-menu-item index="/" style="font-size: 16px">学校</el-menu-item>
+        <el-button round class="header-right" type="primary" @click="toLogin" v-if="userId == null">登录/注册</el-button>
         <el-button round class="header-right" type="primary" @click="toPersonCenter" v-if="userId != null"> {{ userId }}</el-button>
       </el-menu>
     </el-header>

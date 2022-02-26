@@ -11,11 +11,9 @@
             <el-input v-model="password"></el-input>
           </el-form-item>
           <el-form-item style="text-align: right">
-            <a style="cursor: pointer" @click="toRegister" >没有账号，我要注册</a>
+            <a style="cursor: pointer; color: #1482f0; text-align: right" @click="toRegister" >没有账号，我要注册</a>
           </el-form-item>
-          <el-form-item>
-            <el-button type="primary" size="big" @click="login">登 录</el-button>
-          </el-form-item>
+          <el-button type="primary" size="big" @click="login" style="width: 50%; margin-left: 25%">登 录</el-button>
         </el-form>
       </div>
       <div v-show="!isLogin">
@@ -104,10 +102,16 @@ export default {
           "Content-type": "application/json;charset=utf-8"
         },
       }).then(function (response){
-        if ( response.data ){
-          router.push('//' + that.userName)
+        if ( response.data == true){
+          router.push('/index')
+        }else if( response.data == 'unTest' ){
+          router.push('/test')
         }else {
-          alert("fail")
+          console.log(typeof response.data)
+          that.$message({
+            message: '密码或用户名错误！',
+            type: 'warning'
+          });
         }
       })
     },
