@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <v-head></v-head>
-    <div class="content">
+    <div class="content" style="background-color: #f5f5f5">
       <div style="width: 60%; margin-left: 20%;">
         <router-view></router-view>
       </div>

@@ -8,10 +8,10 @@
             <el-input v-model="userName"></el-input>
           </el-form-item>
           <el-form-item label="密码 :" >
-            <el-input v-model="password"></el-input>
+            <el-input v-model="password" type="password"></el-input>
           </el-form-item>
           <el-form-item style="text-align: right">
-            <a style="cursor: pointer; color: #1482f0; text-align: right" @click="toRegister" >没有账号，我要注册</a>
+            <a style="cursor: pointer; color: #18345e; text-align: right" @click="toRegister" >没有账号，我要注册</a>
           </el-form-item>
           <el-button type="primary" size="big" @click="login" style="width: 50%; margin-left: 25%">登 录</el-button>
         </el-form>

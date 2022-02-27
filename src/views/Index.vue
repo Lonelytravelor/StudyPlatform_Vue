@@ -1,5 +1,5 @@
 <template>
-  <div style="margin-top: 20px">
+  <div style="padding-top: 30px">
     <p style="font-size: 24px;margin-left: 10px">国家精品课</p>
     <hr style="color: #0033b0;margin-left: 10px"/>
     <el-row style="margin-top: 5px">
