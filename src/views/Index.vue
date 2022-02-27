@@ -1,7 +1,7 @@
 <template>
   <div style="padding-top: 30px">
     <p style="font-size: 24px;margin-left: 10px">国家精品课</p>
-    <hr style="color: #0033b0;margin-left: 10px"/>
+    <el-divider></el-divider>
     <el-row style="margin-top: 5px">
       <el-col :span="4" v-for="item in courses" :key="item.courseId">
         <el-card :body-style="{ padding: '0px' }" shadow="hover" style=" margin-left: 11px">

@@ -30,6 +30,9 @@ export default {
       radio: 1,
       questions : [],
       style: "",
+      styleShape: "",
+      styleName: "",
+      styleDes: "",
     };
   },
   created() {
@@ -52,6 +55,7 @@ export default {
       return (this.answers.length === 44)
     },
     onSubmit: function () {
+      const that = this;
       //这里注释了用户的判断是否将问题都选择
       if (true){
         axios({
@@ -61,15 +65,26 @@ export default {
             answers : this.answers,
             userName : this.userName,
           }
-        })
-      }else {
+        }).then(function (response) {
+          that.styleShape = response.data.styleShape;
+          that.styleName = response.data.styleName;
+          that.styleDes = response.data.styleDes;
+          that.$alert(
+              '<strong>你的性格分析结果为： </strong><i>' + that.styleName + '</i>'
+              + '<br><br>'
+              + that.styleDes
+              , '性格分析结果', {
+            dangerouslyUseHTMLString: true
+          });
+        });
+      } else {
         this.$message({
           message: '您还有没有填完的选项，请完善您的答案！',
           showClose: true,
           type: 'warning',
-        });
-      }
-    }
+        })
+      };
+    },
   }
 }
 </script>

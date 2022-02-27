@@ -6,7 +6,7 @@
         <el-menu-item index="/" style="font-size: 16px">首页</el-menu-item>
         <el-menu-item index="/course" style="font-size: 16px">课程</el-menu-item>
         <el-menu-item index="/school" style="font-size: 16px">学校</el-menu-item>
-        <el-button size="small" round class="header-right" type="primary" @click="toLogin" v-if="userId == null">登录/注册</el-button>
+        <el-button size="small" round class="header-right" type="primary" @click="toLogin" v-if="userId == null"> 登录 / 注册 </el-button>
         <el-button round class="header-right" type="primary" @click="toPersonCenter" v-if="userId != null"> {{ userId }}</el-button>
       </el-menu>
     </el-header>
