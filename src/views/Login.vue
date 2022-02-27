@@ -105,7 +105,7 @@ export default {
         if ( response.data == true){
           router.push('/index')
         }else if( response.data == 'unTest' ){
-          router.push('/test')
+          router.push('/test/' + that.userName);
         }else {
           console.log(typeof response.data)
           that.$message({

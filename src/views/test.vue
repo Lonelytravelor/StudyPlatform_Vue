@@ -23,6 +23,7 @@ import axios from "axios";
 
 export default {
   name: "test",
+  props: ["userName"],
   data () {
     return {
       answers: [],
@@ -33,6 +34,7 @@ export default {
   },
   created() {
     const that = this;
+    console.log(this.userName)
     axios({
       url: "http://localhost:9090/loadNatureTest",
       method: "get",
@@ -50,12 +52,14 @@ export default {
       return (this.answers.length === 44)
     },
     onSubmit: function () {
-      if (this.checkAnswers()){
+      //这里注释了用户的判断是否将问题都选择
+      if (true){
         axios({
           url:"http://localhost:9090/updateNatureTest",
           method: "post",
           data: {
-            answers : this.answers
+            answers : this.answers,
+            userName : this.userName,
           }
         })
       }else {

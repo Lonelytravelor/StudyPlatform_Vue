@@ -1,6 +1,16 @@
 <template>
   <div style="padding-top: 30px">
+<!--    这里是最上面课程的总体展示部分，包含照片和基本信息，以及选课按钮    -->
     <el-row>
+      <el-col :span="24">
+        <el-card>
+
+        </el-card>
+      </el-col>
+    </el-row>
+<!--    下面是课程的简介信息，分为主体和右侧卡片。    -->
+<!--    主体部分    -->
+    <el-row style="margin-top: 20px">
       <el-col :span="16">
         <div style="margin-right: 10px">
           <el-card class="box-card" body-style="round">
@@ -12,6 +22,7 @@
           </el-card>
         </div>
       </el-col>
+<!--    右侧卡片部分    -->
       <el-col :span="8">
         <el-row>
           <div style="margin-left: 10px">
@@ -32,6 +43,7 @@
           </div>
         </el-row>
       </el-col>
+<!--      右侧卡片结束    -->
     </el-row>
   </div>
 </template>

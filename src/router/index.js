@@ -44,8 +44,9 @@ const routes = [
     component: MyIndex
   },
   {
-    path: '/test',
-    component: test
+    path: '/test/:userName',
+    component: test,
+    props : true,
   },
   {
     path: '*',
