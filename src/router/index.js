@@ -4,7 +4,6 @@ import Index from '@/views/Index'
 import Login from '@/views/Login.vue'
 import NotFound from "@/views/NotFound";
 import CourseIndex from "@/views/CourseIndex";
-import test from "@/views/test";
 import Home from "@/components/Home";
 import NatureTest from "@/views/NatureTest";
 import MyIndex from "@/views/MyIndex";
@@ -44,8 +43,8 @@ const routes = [
     component: MyIndex
   },
   {
-    path: '/test/:userName',
-    component: test,
+    path: '/NatureTest/:userName',
+    component: NatureTest,
     props : true,
   },
   {
