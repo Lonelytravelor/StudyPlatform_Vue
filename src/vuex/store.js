@@ -8,8 +8,10 @@ const store = new Vuex.Store({
         userName: "",
     },
     mutations: {
-        setUserName() {
-            this.userName = "test";
+        setUserName(state, name) {
+            state.userName = name;
         }
     }
 })
+
+export default store

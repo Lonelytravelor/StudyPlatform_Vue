@@ -40,9 +40,11 @@
 <script>
 import axios from "axios";
 import router from "@/router";
+import store from "@/vuex/store";
 
 export default {
   name: "About",
+  store,
   data(){
     return{
       userName: "",
@@ -103,6 +105,7 @@ export default {
         },
       }).then(function (response){
         if ( response.data == true){
+          that.$store.commit("setUserName", that.userName);
           router.push('/index')
         }else if( response.data == 'unTest' ){
           router.push('/NatureTest/' + that.userName);
