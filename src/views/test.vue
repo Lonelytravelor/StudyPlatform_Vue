@@ -15,6 +15,22 @@
         提交
       </el-button>
     </el-card>
+    <el-dialog
+        title="性格分析结果"
+        :visible.sync="centerDialogVisible"
+        width="35%">
+      <strong>你的性格分析结果为： </strong>
+      {{ styleName }}<br><br>
+      <i>{{ styleDes[0] }}</i>
+      <i>{{ styleDes[1] }}</i><br>
+      <i>{{ styleDes[2] }}</i><br>
+      <i>{{ styleDes[3] }}</i><br><br><br>
+      您可以在个人中心中重新测试，以便我们可以更好地了解您。
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="centerDialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="centerDialogVisible = false">确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -26,13 +42,14 @@ export default {
   props: ["userName"],
   data () {
     return {
+      centerDialogVisible: false,
       answers: [],
       radio: 1,
       questions : [],
       style: "",
       styleShape: "",
       styleName: "",
-      styleDes: "",
+      styleDes: [],
     };
   },
   created() {
@@ -68,14 +85,8 @@ export default {
         }).then(function (response) {
           that.styleShape = response.data.styleShape;
           that.styleName = response.data.styleName;
-          that.styleDes = response.data.styleDes;
-          that.$alert(
-              '<strong>你的性格分析结果为： </strong><i>' + that.styleName + '</i>'
-              + '<br><br>'
-              + that.styleDes
-              , '性格分析结果', {
-            dangerouslyUseHTMLString: true
-          });
+          that.styleDes = response.data.styleDes.split("。");
+          that.centerDialogVisible = true;
         });
       } else {
         this.$message({
