@@ -7,7 +7,7 @@
         <el-menu-item index="/course" style="font-size: 16px">课程</el-menu-item>
         <el-menu-item index="/school" style="font-size: 16px">学校</el-menu-item>
         <el-button size="small" round class="header-right" type="primary" @click="toLogin" v-if="this.$store.state.userName == '' "> 登录 / 注册 </el-button>
-        <el-button round class="header-right" type="primary" @click="toPersonCenter" v-if="this.$store.state.userName != '' "> {{ this.$store.state.userName }}</el-button>
+        <el-button size="small" round class="header-right" type="primary" @click="toPersonCenter" v-if="this.$store.state.userName != '' "> {{ this.$store.state.userName }}</el-button>
       </el-menu>
     </el-header>
   </el-container>
