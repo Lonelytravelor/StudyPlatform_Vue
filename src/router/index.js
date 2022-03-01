@@ -8,6 +8,7 @@ import Home from "@/components/Home";
 import NatureTest from "@/views/NatureTest";
 import MyIndex from "@/views/MyIndex";
 import test from "@/views/test";
+import PersonCerter from "@/views/PersonCenter";
 
 Vue.use(VueRouter)
 
@@ -23,16 +24,16 @@ const routes = [
       {
         path: '/index',
         component: Index,
-        // path: '//:userId?',
-        // name: 'Index',
-        // component: Index,
-        // props: true,
       },
       {
         path: '/CourseIndex/:courseId',
         component: CourseIndex,
         props: true,
-      }
+      },
+      {
+        path: '/PersonCerter',
+        component: PersonCerter,
+      },
     ]
   },
   {

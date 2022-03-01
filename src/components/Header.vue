@@ -43,7 +43,7 @@
         this.$router.push('/Login');
       },
       toPersonCenter(){
-        this.$router.push('/PersonCerter/' + this.userId);
+        this.$router.push('/PersonCerter');
       }
     }
   }

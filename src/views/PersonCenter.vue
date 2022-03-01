@@ -1,32 +1,40 @@
 <template>
-  <el-container>
-    <el-main>
-      <el-card class="box-card">
-        <div slot="header" class="clearfix">
-          <span>账户信息</span>
+  <div style="padding-top: 30px">
+    <el-row>
+      <el-col :span="16">
+        <div>
+          <el-card class="box-card">
+            <div slot="header" class="clearfix">
+              <span>账户信息</span>
+            </div>
+            <div class="text item">
+              手机号：{{ UserPhone }}<br>
+              邮 箱：{{ UserEmail }}<br>
+              密 码：{{ UserPassword }}<br>
+            </div>
+          </el-card>
         </div>
-        <div class="text item">
-          手机号：{{ UserPhone }}<br>
-          邮 箱：{{ UserEmail }}<br>
-          密 码：{{ UserPassword }}<br>
+      </el-col>
+      <el-col :span="8">
+        <div>
+          <el-card class="box-card">
+            <div slot="header" class="clearfix">
+              <span>账户信息</span>
+            </div>
+            <div class="text item">
+              年   龄：{{ UserAge }}<br>
+              性   别：{{ UserGender }}<br>
+              所在大学：{{ UserCollage }}<br>
+              所在专业：{{ UserDiscipline }}<br>
+              所在班级：{{ UserClass }}<br>
+              入学年份：{{ UserSchoolYear }}<br>
+              性格分析：{{ UserStudyStyle }}<br>
+            </div>
+          </el-card>
         </div>
-      </el-card>
-      <el-card class="box-card">
-      <div slot="header" class="clearfix">
-        <span>账户信息</span>
-      </div>
-      <div class="text item">
-        年   龄：{{ UserAge }}<br>
-        性   别：{{ UserGender }}<br>
-        所在大学：{{ UserCollage }}<br>
-        所在专业：{{ UserDiscipline }}<br>
-        所在班级：{{ UserClass }}<br>
-        入学年份：{{ UserSchoolYear }}<br>
-        性格分析：{{ UserStudyStyle }}<br>
-      </div>
-      </el-card>
-    </el-main>
-  </el-container>
+      </el-col>
+    </el-row>
+  </div>
 </template>
 
 <script>
@@ -89,24 +97,4 @@ export default {
 </script>
 
 <style scoped>
-.text {
-  font-size: 14px;
-}
-
-.item {
-  margin-bottom: 18px;
-}
-
-.clearfix:before,
-.clearfix:after {
-  display: table;
-  content: "";
-}
-.clearfix:after {
-  clear: both
-}
-
-.box-card {
-  width: 480px;
-}
 </style>

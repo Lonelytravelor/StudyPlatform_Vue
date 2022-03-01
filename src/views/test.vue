@@ -1,7 +1,7 @@
 <template>
   <div>
     {{ this.$store.state.userName }}
-    {{ this.$store.state.userPassword }}
+    {{ this.$store.state.userId }}
     <el-button @click="setName(user)"> 更新姓名 </el-button>
   </div>
 </template>

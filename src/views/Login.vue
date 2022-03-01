@@ -104,11 +104,17 @@ export default {
           "Content-type": "application/json;charset=utf-8"
         },
       }).then(function (response){
-        if ( response.data == true){
+        let arr = [];
+        arr = response.data.split(",");
+        console.log(arr[1])
+        console.log(typeof arr[1])
+        if ( arr[1] == "true"){
           that.$store.commit("setUserName", that.userName);
+          that.$store.commit("setUserId", arr[0]);
           router.push('/index')
-        }else if( response.data == 'unTest' ){
+        }else if( arr[1] == 'unTest' ){
           that.$store.commit("setUserName", that.userName);
+          that.$store.commit("setUserId", arr[0]);
           router.push('/NatureTest');
         }else {
           console.log(typeof response.data)

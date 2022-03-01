@@ -1,6 +1,6 @@
 <template>
   <div style="padding-top: 30px">
-    <p style="font-size: 24px;margin-left: 10px">国家精品课</p>
+    <p style="font-size: 24px;margin-left: 10px; margin-bottom: 0 ">国家精品课</p>
     <el-divider></el-divider>
     <el-row style="margin-top: 5px">
       <el-col :span="4" v-for="item in courses" :key="item.courseId">
