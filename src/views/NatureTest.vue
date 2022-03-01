@@ -62,7 +62,7 @@ export default {
       that.questions = response.data;
     });
     this.$message({
-      message: '请先完善性格测试，即可开启个性化推荐内容！',
+      message: '完善性格测试，开启个性化推荐内容！',
       showClose: true,
       type: 'success',
     });
