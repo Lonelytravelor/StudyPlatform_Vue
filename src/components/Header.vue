@@ -17,7 +17,6 @@
   import store from "@/vuex/store";
   export default {
     name: "Header",
-    props: ['userId'],
     store,
     data() {
       return {

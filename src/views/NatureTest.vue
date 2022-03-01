@@ -35,10 +35,11 @@
 
 <script>
 import axios from "axios";
+import store from "@/vuex/store";
 
 export default {
   name: "NatureTest",
-  props: ["userName"],
+  store,
   data () {
     return {
       centerDialogVisible: false,
@@ -53,7 +54,7 @@ export default {
   },
   created() {
     const that = this;
-    console.log(this.userName)
+    console.log(this.$store.state.userName)
     axios({
       url: "http://localhost:9090/loadNatureTest",
       method: "get",
@@ -77,13 +78,13 @@ export default {
     onSubmit: function () {
       const that = this;
       //这里注释了用户的判断是否将问题都选择
-      if ( this.checkAnswers() ){
+      if ( this.centerDialogVisible ){
         axios({
           url:"http://localhost:9090/updateNatureTest",
           method: "post",
           data: {
             answers : this.answers,
-            userName : this.userName,
+            userName : that.$store.state.userName,
           }
         }).then(function (response) {
           that.styleShape = response.data.styleShape;

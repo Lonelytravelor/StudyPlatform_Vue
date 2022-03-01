@@ -108,7 +108,8 @@ export default {
           that.$store.commit("setUserName", that.userName);
           router.push('/index')
         }else if( response.data == 'unTest' ){
-          router.push('/NatureTest/' + that.userName);
+          that.$store.commit("setUserName", that.userName);
+          router.push('/NatureTest');
         }else {
           console.log(typeof response.data)
           that.$message({

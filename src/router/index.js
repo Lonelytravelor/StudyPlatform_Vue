@@ -48,9 +48,8 @@ const routes = [
     component: test
   },
   {
-    path: '/NatureTest/:userName',
+    path: '/NatureTest',
     component: NatureTest,
-    props : true,
   },
   {
     path: '*',
