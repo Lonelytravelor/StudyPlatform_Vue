@@ -1,28 +1,27 @@
 <template>
   <div>
-    {{ this.$store.state.userName }}
-    {{ this.$store.state.userId }}
-    <el-button @click="setName(user)"> 更新姓名 </el-button>
+    <el-image :src="url"></el-image>
   </div>
 </template>
 
 <script>
 import store from '../vuex/store'
+import axios from "axios";
 export default {
   name: "test",
   store,
   data() {
     return {
-      user:{
-        userName: "dejdfhjksdkjskd",
-        password: "hhhhhhhhh"
-      }
+      url: "",
     }
   },
-  methods: {
-    setName(user){
-      this.$store.commit("setUserName", user);
-    }
+  created() {
+    const that =this;
+    axios({
+      url: "http://localhost:9090/image"
+    }).then(function (response) {
+      that.url = response.data;
+    })
   }
 }
 </script>

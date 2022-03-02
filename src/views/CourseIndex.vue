@@ -16,7 +16,7 @@
           <el-card class="box-card" body-style="round">
             <el-tabs v-model="activeName">
               <el-tab-pane label="课程详情" name="first">
-                用户法第三方士大夫管理
+                <i style="font-size: 13px">{{ courseSummary.summaryContent }}</i>
               </el-tab-pane>
             </el-tabs>
           </el-card>
@@ -49,6 +49,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "CourseIndex",
   props:['courseId'],
@@ -56,8 +58,32 @@ export default {
     return{
       id: 0,
       activeName: "first",
+      course: {
+        courseName: "",
+        courseInstitution: "",
+        courseTeacher: "",
+        courseReleaseTime: "",
+        courseSelected: 0,
+      },
+      courseSummary: {
+        summaryContent: "",
+      },
+      courseAnnouncementList: []
     }
   },
+  created() {
+    const that = this;
+    axios({
+      url: "http://localhost:9090/loadCourseById",
+      params: {
+        id : this.courseId
+      }
+    }).then(function (response) {
+      that.course = response.data;
+      that.courseSummary = response.data.courseSummary;
+      that.courseAnnouncementList = response.data.courseAnnouncementList;
+    })
+  }
 }
 </script>
 

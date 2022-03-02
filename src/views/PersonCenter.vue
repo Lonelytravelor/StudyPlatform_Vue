@@ -26,7 +26,7 @@
             <span>账户信息</span>
           </div>
           <el-descriptions :column="num">
-            <el-descriptions-item label="手机号">{{ userAccount.userPhone }}</el-descriptions-item>
+            <el-descriptions-item label="手机号" disabled="true">{{ userAccount.userPhone }}</el-descriptions-item>
             <el-descriptions-item label="邮 箱">{{ userAccount.userEmail }}</el-descriptions-item>
             <el-descriptions-item label="密 码 ">{{ password }}
               <i class="el-icon-view" style="padding-left: 20px"
