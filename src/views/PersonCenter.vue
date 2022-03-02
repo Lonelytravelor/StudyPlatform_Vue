@@ -5,7 +5,8 @@
         <el-card class="box-card">
           <div slot="header" class="clearfix">
             <span>基本资料</span>
-            <el-link type="primary" style="float: right; margin-top: 10px">完善信息</el-link>
+            <el-link type="primary" style="float: right; margin-top: 10px"
+                     @click="dialogFormVisible = true">完善信息</el-link>
           </div>
           <el-descriptions :column="num">
             <el-descriptions-item label="年   龄 ">{{ userBasic.userAge }}</el-descriptions-item>
@@ -50,6 +51,35 @@
         <el-button type="primary" @click="toTest">重新测试 <i class="el-icon-right"></i></el-button>
       </span>
     </el-dialog>
+    <el-dialog title="完善信息" :visible.sync="dialogFormVisible" width="30%">
+      <el-form label-width="80px" style="padding-left: 30px;">
+        <el-form-item label="年   龄:" >
+          <el-input v-model="userBasic.userAge" autocomplete="off" style="width: 80%"></el-input>
+        </el-form-item>
+        <el-form-item label="性   别:">
+          <el-select v-model="userBasic.userGender" placeholder="请选择" style="width: 80%">
+            <el-option value="男"></el-option>
+            <el-option value="女"></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="所在大学:" >
+          <el-input v-model="userBasic.userCollege" autocomplete="off" style="width: 80%"></el-input>
+        </el-form-item>
+        <el-form-item label="所在专业:" >
+          <el-input v-model="userBasic.userDiscipline" autocomplete="off" style="width: 80%"></el-input>
+        </el-form-item>
+        <el-form-item label="所在班级:" >
+          <el-input v-model="userBasic.userClass" autocomplete="off" style="width: 80%"></el-input>
+        </el-form-item>
+        <el-form-item label="入学年份:" >
+          <el-input v-model="userBasic.userSchoolYear" autocomplete="off" style="width: 80%"></el-input>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button type="primary" @click="updateBasic">确 定</el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
@@ -63,6 +93,7 @@ export default {
   data(){
     return{
       centerDialogVisible: false,
+      dialogFormVisible: false,
       num: 1,
       password: "******",
       userAccount: {
@@ -116,6 +147,28 @@ export default {
   methods: {
     toTest(){
       this.$router.push("/NatureTest")
+    },
+    updateBasic() {
+      const that = this;
+      axios({
+        url: "http://localhost:9090/updateBasic",
+        method: "post",
+        data: {
+          userId: this.userAccount.userId,
+          userAge: this.userBasic.userAge,
+          userGender: this.userBasic.userGender,
+          userCollege: this.userBasic.userCollege,
+          userDiscipline: this.userBasic.userDiscipline,
+          userClass: this.userBasic.userClass,
+          userSchoolYear: this.userBasic.userSchoolYear,
+        }
+      }).then(function (response) {
+        that.$message({
+          message: '成功更新您的信息！',
+          type: 'success'
+        });
+        that.dialogFormVisible = false;
+      })
     }
   }
 }
