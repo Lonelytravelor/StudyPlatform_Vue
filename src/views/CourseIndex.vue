@@ -4,7 +4,20 @@
     <el-row>
       <el-col :span="24">
         <el-card>
-
+          <el-col :span="12">
+            <el-image :src="url" style="width: 100%;border-radius:10px"></el-image>
+          </el-col>
+          <el-col :span="12">
+            <div style="margin-top: 20px; margin-left: 25px">
+              <div>
+                <b style="font-size: 24px">{{ course.courseName }}</b>
+                <el-tag style="margin-left: 5px" size="mini" effect="dark">计算机</el-tag>
+              </div>
+              <div style="margin-top: 20px;">
+                <el-button round>立即参加</el-button>
+              </div>
+            </div>
+          </el-col>
         </el-card>
       </el-col>
     </el-row>
@@ -19,6 +32,23 @@
                 <i style="font-size: 13px">{{ courseSummary.summaryContent }}</i>
               </el-tab-pane>
             </el-tabs>
+            <el-tabs v-model="activeName">
+              <el-tab-pane label="课程公告" name="first">
+                <div v-for="item in courseAnnouncementList">
+                  <b style="font-size: 13px;text-align-last:justify">{{ item.announcementTitle }}</b><br>
+                  <i style="font-size: 10px">{{ item.announcementContent }}</i>
+                </div>
+              </el-tab-pane>
+            </el-tabs>
+            <el-tabs v-model="activeName">
+              <el-tab-pane label="参考书籍" name="first">
+                <div v-for="item in courseReferenceList">
+                  <cite style="font-size: 13px;text-align-last:justify">《{{ item.referenceName }}》</cite>
+                  <i style="font-size: 10px">{{ item.referenceAuthor }}</i>
+                  <i style="font-size: 10px">{{ item.referencePress }}</i>
+                </div>
+              </el-tab-pane>
+            </el-tabs>
           </el-card>
         </div>
       </el-col>
@@ -27,9 +57,11 @@
         <el-row>
           <div style="margin-left: 10px">
             <el-card class="box-card" body-style="round">
-              <div v-for="o in 2" :key="o" class="text item">
-                {{ courseId }}
-              </div>
+              <el-tabs v-model="activeName">
+                <el-tab-pane label="授课教师" name="first">
+                  <i style="font-size: 13px">{{ course.courseTeacher }}</i>
+                </el-tab-pane>
+              </el-tabs>
             </el-card>
           </div>
         </el-row>
@@ -58,17 +90,20 @@ export default {
     return{
       id: 0,
       activeName: "first",
+      url: "http://localhost:9090/image.png",
       course: {
         courseName: "",
         courseInstitution: "",
         courseTeacher: "",
         courseReleaseTime: "",
+        courseLabel: "",
         courseSelected: 0,
       },
       courseSummary: {
         summaryContent: "",
       },
-      courseAnnouncementList: []
+      courseAnnouncementList: [],
+      courseReferenceList: [],
     }
   },
   created() {
@@ -82,6 +117,7 @@ export default {
       that.course = response.data;
       that.courseSummary = response.data.courseSummary;
       that.courseAnnouncementList = response.data.courseAnnouncementList;
+      that.courseReferenceList = response.data.courseReferenceList;
     })
   }
 }

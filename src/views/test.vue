@@ -12,7 +12,7 @@ export default {
   store,
   data() {
     return {
-      url: "",
+      url: "http://localhost:9090/image",
     }
   },
   created() {
