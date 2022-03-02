@@ -6,8 +6,16 @@
         <el-menu-item index="/" style="font-size: 16px">首页</el-menu-item>
         <el-menu-item index="/course" style="font-size: 16px">课程</el-menu-item>
         <el-menu-item index="/school" style="font-size: 16px">学校</el-menu-item>
-        <el-button size="small" round class="header-right" type="primary" @click="toLogin" v-if="this.$store.state.userName == '' "> 登录 / 注册 </el-button>
-        <el-button size="small" round class="header-right" type="primary" @click="toPersonCenter" v-if="this.$store.state.userName != '' "> {{ this.$store.state.userName }}</el-button>
+        <el-button size="small" round class="header-right" type="primary" @click="toLogin"
+                   v-if="this.$store.state.userName == '' "> 登录 / 注册 </el-button>
+        <el-dropdown class="header-right" style="width: 120px; cursor: pointer" v-if="this.$store.state.userName != '' "
+                     @command="command">
+          <span>{{ this.$store.state.userName }}</span><i class="el-icon-arrow-down" style="margin-left: 5px; margin-top: 10px"></i>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item command="a">个人信息</el-dropdown-item>
+            <el-dropdown-item command="b">退出</el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
       </el-menu>
     </el-header>
   </el-container>
@@ -44,6 +52,14 @@
       },
       toPersonCenter(){
         this.$router.push('/PersonCerter');
+      },
+      command(command){
+        if (command == 'a'){
+          this.$router.push('/PersonCerter');
+        }else if (command == 'b'){
+          this.$store.commit("exit");
+          this.$router.push('/');
+        }
       }
     }
   }

@@ -15,6 +15,10 @@ const store = new Vuex.Store({
         setUserId(state, id) {
             state.userId = id;
         },
+        exit(state) {
+            state.userName = "";
+            state.userId = "";
+        },
     }
 })
 

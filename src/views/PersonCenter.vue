@@ -5,8 +5,9 @@
         <el-card class="box-card">
           <div slot="header" class="clearfix">
             <span>基本资料</span>
+            <el-link type="primary" style="text-align: right">主要链接</el-link>
           </div>
-          <el-descriptions column="1">
+          <el-descriptions :column="num">
             <el-descriptions-item label="年   龄 ">{{ userBasic.userAge }}</el-descriptions-item>
             <el-descriptions-item label="性   别 ">{{ userBasic.userGender }}</el-descriptions-item>
             <el-descriptions-item label="所在大学 ">{{ userBasic.userCollege }}</el-descriptions-item>
@@ -23,7 +24,7 @@
           <div slot="header" class="clearfix">
             <span>账户信息</span>
           </div>
-          <el-descriptions column="1">
+          <el-descriptions :column="num">
             <el-descriptions-item label="手机号">{{ userAccount.userPhone }}</el-descriptions-item>
             <el-descriptions-item label="邮 箱">{{ userAccount.userEmail }}</el-descriptions-item>
             <el-descriptions-item label="密 码 ">{{ userAccount.userPassword }}</el-descriptions-item>
@@ -59,6 +60,7 @@ export default {
   data(){
     return{
       centerDialogVisible: false,
+      num: 1,
       userAccount: {
         userId: 0,
         userPhone: "",
