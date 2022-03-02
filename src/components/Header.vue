@@ -10,7 +10,7 @@
                    v-if="this.$store.state.userName == '' "> 登录 / 注册 </el-button>
         <el-dropdown class="header-right" style="width: 120px; cursor: pointer" v-if="this.$store.state.userName != '' "
                      @command="command">
-          <span>{{ this.$store.state.userName }}</span><i class="el-icon-arrow-down" style="margin-left: 5px; margin-top: 10px"></i>
+          <span>{{ this.$store.state.userName }}<i class="el-icon-arrow-down" style="margin-left: 5px; margin-top: 10px"></i></span>
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item command="a">个人信息</el-dropdown-item>
             <el-dropdown-item command="b">退出</el-dropdown-item>

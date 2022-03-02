@@ -5,7 +5,7 @@
         <el-card class="box-card">
           <div slot="header" class="clearfix">
             <span>基本资料</span>
-            <el-link type="primary" style="text-align: right">主要链接</el-link>
+            <el-link type="primary" style="float: right; margin-top: 10px">完善信息</el-link>
           </div>
           <el-descriptions :column="num">
             <el-descriptions-item label="年   龄 ">{{ userBasic.userAge }}</el-descriptions-item>
@@ -27,7 +27,10 @@
           <el-descriptions :column="num">
             <el-descriptions-item label="手机号">{{ userAccount.userPhone }}</el-descriptions-item>
             <el-descriptions-item label="邮 箱">{{ userAccount.userEmail }}</el-descriptions-item>
-            <el-descriptions-item label="密 码 ">{{ userAccount.userPassword }}</el-descriptions-item>
+            <el-descriptions-item label="密 码 ">{{ password }}
+              <i class="el-icon-view" style="padding-left: 20px"
+                 @mousedown="password=userAccount.userPassword" @mouseup="password='******'"></i>
+            </el-descriptions-item>
           </el-descriptions>
         </el-card>
       </el-col>
@@ -61,6 +64,7 @@ export default {
     return{
       centerDialogVisible: false,
       num: 1,
+      password: "******",
       userAccount: {
         userId: 0,
         userPhone: "",

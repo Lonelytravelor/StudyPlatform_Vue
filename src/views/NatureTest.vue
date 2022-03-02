@@ -78,7 +78,7 @@ export default {
     onSubmit: function () {
       const that = this;
       //这里注释了用户的判断是否将问题都选择
-      if ( this.centerDialogVisible ){
+      if ( this.checkAnswers() ){
         axios({
           url:"http://localhost:9090/updateNatureTest",
           method: "post",
