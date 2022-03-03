@@ -5,13 +5,13 @@
       <el-col :span="24">
         <el-card>
           <el-col :span="12">
-            <el-image :src="url" style="width: 100%;border-radius:10px"></el-image>
+            <el-image :src="baseUrl + course.courseImageUrl" style="width: 100%;border-radius:10px"></el-image>
           </el-col>
           <el-col :span="12">
             <div style="margin-top: 20px; margin-left: 25px">
               <div>
                 <b style="font-size: 24px">{{ course.courseName }}</b>
-                <el-tag style="margin-left: 5px" size="mini" effect="dark">计算机</el-tag>
+                <el-tag style="margin-left: 5px" size="mini" effect="dark">{{ course.courseLabel }}</el-tag>
               </div>
               <div style="margin-top: 20px;">
                 <el-button round>立即参加</el-button>
@@ -90,13 +90,14 @@ export default {
     return{
       id: 0,
       activeName: "first",
-      url: "http://localhost:9090/image.png",
+      baseUrl: "http://localhost:9090/",
       course: {
         courseName: "",
         courseInstitution: "",
         courseTeacher: "",
         courseReleaseTime: "",
         courseLabel: "",
+        courseImageUrl: "",
         courseSelected: 0,
       },
       courseSummary: {

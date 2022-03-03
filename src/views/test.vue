@@ -1,6 +1,7 @@
 <template>
   <div>
-    <el-image :src="url"></el-image>
+    <el-image :src="url1"></el-image>
+    <el-image :src="url2"></el-image>
   </div>
 </template>
 
@@ -12,7 +13,8 @@ export default {
   store,
   data() {
     return {
-      url: "http://localhost:9090/image",
+      url1: "http://localhost:9090/courseImage/image.png",
+      url2: "http://localhost:9090/courseImage/10009.png",
     }
   },
   created() {
@@ -20,7 +22,7 @@ export default {
     axios({
       url: "http://localhost:9090/image"
     }).then(function (response) {
-      that.url = response.data;
+      // that.url = response.data;
     })
   }
 }

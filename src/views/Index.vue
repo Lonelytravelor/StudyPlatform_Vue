@@ -5,8 +5,7 @@
     <el-row style="margin-top: 5px">
       <el-col :span="4" v-for="item in courses" :key="item.courseId">
         <el-card :body-style="{ padding: '0px' }" shadow="hover" style=" margin-left: 11px">
-          <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-               class="image" @click="toCourseIndex(item.courseId)">
+          <el-image :src="baseUrl + item.courseImageUrl" @click="toCourseIndex(item.courseId)"></el-image>
           <div style="padding: 14px;">
             <span><p style="font-family: 微软雅黑; font-size: 13px"> {{ item.courseName }}</p></span>
             <span><p style="font-family: 微软雅黑; font-size: 10px"> {{ item.courseTeacher }}</p></span>
@@ -30,6 +29,7 @@ export default {
     return {
       dialogFormVisible : false,
       form: {},
+      baseUrl: "http://localhost:9090/",
       courses: [],
     }
   },

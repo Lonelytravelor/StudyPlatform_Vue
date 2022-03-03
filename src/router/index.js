@@ -8,7 +8,7 @@ import Home from "@/components/Home";
 import NatureTest from "@/views/NatureTest";
 import MyIndex from "@/views/MyIndex";
 import test from "@/views/test";
-import PersonCerter from "@/views/PersonCenter";
+import PersonMessage from "@/views/PersonMessage";
 
 Vue.use(VueRouter)
 
@@ -31,8 +31,8 @@ const routes = [
         props: true,
       },
       {
-        path: '/PersonCerter',
-        component: PersonCerter,
+        path: '/PersonMessage',
+        component: PersonMessage,
       },
     ]
   },
