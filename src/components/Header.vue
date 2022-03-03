@@ -35,15 +35,6 @@
         userId: "",
       }
     },
-    created() {
-      const that = this;
-      axios({
-        url: "http://localhost:9090/loadCourse",
-        method: "get",
-      }).then(function (response) {
-        that.courses = response.data;
-      })
-    },
     methods:{
       toCourseIndex:function (courseId) {
         this.$router.push('/CourseIndex/' + courseId);

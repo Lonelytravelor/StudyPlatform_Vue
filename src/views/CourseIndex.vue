@@ -68,9 +68,11 @@
         <el-row style="margin-top: 20px">
           <div style="margin-left: 10px">
             <el-card class="box-card" body-style="round">
-              <div v-for="o in 2" :key="o" class="text item">
-                {{ courseId }}
-              </div>
+              <el-tabs v-model="activeName">
+                <el-tab-pane label="所属学院" name="first">
+                  <i style="font-size: 13px">{{ course.courseInstitution }}</i>
+                </el-tab-pane>
+              </el-tabs>
             </el-card>
           </div>
         </el-row>

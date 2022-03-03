@@ -4,7 +4,7 @@
     <el-divider></el-divider>
     <el-row style="margin-top: 5px">
       <el-col :span="4" v-for="item in courses" :key="item.courseId">
-        <el-card :body-style="{ padding: '0px' }" shadow="hover" style=" margin-left: 11px">
+        <el-card :body-style="{ padding: '0px' }" shadow="hover" style=" margin-left: 11px;margin-bottom: 10px">
           <el-image :src="baseUrl + item.courseImageUrl" @click="toCourseIndex(item.courseId)"></el-image>
           <div style="padding: 14px;">
             <span><p style="font-family: 微软雅黑; font-size: 13px"> {{ item.courseName }}</p></span>
