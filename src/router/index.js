@@ -9,6 +9,7 @@ import NatureTest from "@/views/NatureTest";
 import MyIndex from "@/views/MyIndex";
 import test from "@/views/test";
 import PersonMessage from "@/views/PersonMessage";
+import PersonCenter from "@/views/PersonCenter";
 
 Vue.use(VueRouter)
 
@@ -33,6 +34,10 @@ const routes = [
       {
         path: '/PersonMessage',
         component: PersonMessage,
+      },
+      {
+        path: '/PersonCenter',
+        component: PersonCenter,
       },
     ]
   },

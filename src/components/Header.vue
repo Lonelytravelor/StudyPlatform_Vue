@@ -12,8 +12,9 @@
                      @command="command">
           <span>{{ this.$store.state.userName }}<i class="el-icon-arrow-down" style="margin-left: 5px; margin-top: 10px"></i></span>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item command="a">个人信息</el-dropdown-item>
-            <el-dropdown-item command="b">退出</el-dropdown-item>
+            <el-dropdown-item command="a">个人中心</el-dropdown-item>
+            <el-dropdown-item command="b">个人信息</el-dropdown-item>
+            <el-dropdown-item command="c">退出</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
       </el-menu>
@@ -55,8 +56,10 @@
       },
       command(command){
         if (command == 'a'){
-          this.$router.push('/PersonCerter');
+          this.$router.push('/PersonCenter');
         }else if (command == 'b'){
+          this.$router.push('/PersonMessage');
+        }else if (command == 'c') {
           this.$store.commit("exit");
           this.$router.push('/');
         }
