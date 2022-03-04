@@ -1,54 +1,21 @@
 <template>
-  <div style="padding-top: 20px">
-    <el-card class="course-title">
-      <div v-for="(courses, index) in summary">
-        <p> {{ index }} </p>
-        <el-divider></el-divider>
-        <el-row style="margin-top: 5px">
-          <el-col :span="4" v-for="item in courses" :key="item.courseId">
-            <el-card :body-style="{ padding: '0px' }" shadow="hover" style=" margin-left: 11px;margin-bottom: 10px">
-              <el-image :src="baseUrl + item.courseImageUrl" @click="toCourseIndex(item.courseId)"></el-image>
-              <div style="padding: 14px;">
-                <span><p style="font-family: 微软雅黑; font-size: 13px"> {{ item.courseName }}</p></span>
-                <span><p style="font-family: 微软雅黑; font-size: 10px"> {{ item.courseTeacher }}</p></span>
-                <div>
-                  <p style="font-family: 微软雅黑; font-size: 10px"> {{ item.courseInstitution }}</p>
-                </div>
-              </div>
-            </el-card>
-          </el-col>
-        </el-row>
-      </div>
-    </el-card>
+  <div style="margin-top: 20px;">
+    <el-button v-show="isSelected" round @click="isSelected = false" style="width: 30%" type="primary">以参加,立即学习</el-button>
+    <el-button v-show="!isSelected" round @click="isSelected = false" style="width: 30%" type="primary">学习</el-button>
   </div>
 </template>
 
 <script>
-import axios from "axios";
 export default {
   name: "test",
   data() {
-    return {
-      baseUrl: "http://localhost:9090/",
-      summary: []
+    return{
+      isSelected: true
     }
-  },
-  created() {
-    const that =this;
-    axios({
-      url: "http://localhost:9090/loadCourseSummary"
-    }).then(function (response) {
-      that.summary = response.data;
-    })
   }
 }
 </script>
 
 <style scoped>
-.course-title {
-  font-size: 18px;
-  margin-left: 10px;
-  margin-bottom: 0;
-}
 
 </style>

@@ -14,7 +14,9 @@
                 <el-tag style="margin-left: 5px" size="mini" effect="dark">{{ course.courseLabel }}</el-tag>
               </div>
               <div style="margin-top: 20px;">
-                <el-button round @click="joinCourse">立即参加</el-button>
+                <el-button v-show="!isSelected" round @click="joinCourse" style="width: 30%" type="primary">立即参加</el-button>
+                <!--      margin-left: 0px 用来解决莫名出现的左外边距10px的问题             -->
+                <el-button v-show="isSelected" round style="width: 30%;margin-left: 0px" type="primary">以参加,立即学习</el-button>
               </div>
             </div>
           </el-col>
@@ -96,6 +98,7 @@ export default {
     return{
       id: 0,
       activeName: "first",
+      isSelected: false,
       baseUrl: "http://localhost:9090/",
       course: {
         courseId: -1,
@@ -115,22 +118,39 @@ export default {
     }
   },
   created() {
-    const that = this;
-    axios({
-      url: "http://localhost:9090/loadCourseById",
-      params: {
-        id : this.courseId
-      }
-    }).then(function (response) {
-      that.course = response.data;
-      that.courseSummary = response.data.courseSummary;
-      that.courseAnnouncementList = response.data.courseAnnouncementList;
-      that.courseReferenceList = response.data.courseReferenceList;
-      console.log(response.data.courseSummary)
-      console.log(typeof response.data.courseSummary)
-    })
+    this.loadIndex();
+    this.isSelectCourse();
   },
   methods: {
+    loadIndex(){
+      const that = this;
+      axios({
+        url: "http://localhost:9090/loadCourseById",
+        params: {
+          id : this.courseId
+        }
+      }).then(function (response) {
+        that.course = response.data;
+        that.courseSummary = response.data.courseSummary;
+        that.courseAnnouncementList = response.data.courseAnnouncementList;
+        that.courseReferenceList = response.data.courseReferenceList;
+        console.log(response.data.courseSummary)
+        console.log(typeof response.data.courseSummary)
+      });
+    },
+    isSelectCourse() {
+      const that = this;
+      axios({
+        url: "http://localhost:9090/isSelectCourse",
+        method: "post",
+        data: {
+          courseId : this.courseId,
+          userId : this.$store.state.userId,
+        }
+      }).then(function (response) {
+        that.isSelected = response.data;
+      })
+    },
     joinCourse() {
       const that = this;
       axios({
@@ -141,7 +161,18 @@ export default {
           userId : this.$store.state.userId,
         }
       }).then(function (response) {
-        console.log(response.data)
+        if ( response.data === "success"){
+          that.isSelected = true;
+          that.$message({
+            message: '选课成功！',
+            type: 'success'
+          });
+        }else {
+          that.$message({
+            message: '选课失败，请稍后再试！',
+            type: 'warning'
+          });
+        }
       })
     }
   }
