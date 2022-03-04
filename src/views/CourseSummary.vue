@@ -26,7 +26,7 @@
 <script>
 import axios from "axios";
 export default {
-  name: "test",
+  name: "CourseSummary.vue",
   data() {
     return {
       baseUrl: "http://localhost:9090/",
@@ -40,6 +40,11 @@ export default {
     }).then(function (response) {
       that.summary = response.data;
     })
+  },
+  methods:{
+    toCourseIndex:function (courseId) {
+      this.$router.push('/CourseIndex/' + courseId);
+    }
   }
 }
 </script>

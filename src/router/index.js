@@ -10,6 +10,7 @@ import MyIndex from "@/views/MyIndex";
 import test from "@/views/test";
 import PersonMessage from "@/views/PersonMessage";
 import PersonCenter from "@/views/PersonCenter";
+import CourseSummary from "@/views/CourseSummary";
 
 Vue.use(VueRouter)
 
@@ -38,6 +39,10 @@ const routes = [
       {
         path: '/PersonCenter',
         component: PersonCenter,
+      },
+      {
+        path: '/CourseSummary',
+        component: CourseSummary,
       },
     ]
   },

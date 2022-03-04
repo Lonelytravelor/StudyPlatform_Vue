@@ -45,12 +45,6 @@ export default {
   methods:{
     toCourseIndex:function (courseId) {
       this.$router.push('/CourseIndex/' + courseId);
-    },
-    toLogin: function () {
-      this.$router.push('/Login');
-    },
-    toPersonCenter(){
-      this.$router.push('/PersonCerter/' + this.userId);
     }
   }
 }
