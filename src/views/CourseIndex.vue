@@ -1,5 +1,5 @@
 <template>
-  <div style="padding-top: 20px">
+  <div class="my-main">
 <!--    这里是最上面课程的总体展示部分，包含照片和基本信息，以及选课按钮    -->
     <el-row>
       <el-col :span="24">

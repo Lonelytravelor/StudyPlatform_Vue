@@ -2,7 +2,7 @@
   <div class="wrapper">
     <v-head></v-head>
     <div class="content" style="background-color: #f5f5f5">
-      <div style="width: 60%; margin-left: 20%;">
+      <div>
         <router-view></router-view>
       </div>
       <v-footer></v-footer>
@@ -22,3 +22,11 @@ export default {
   }
 }
 </script>
+
+<style>
+.my-main{
+  width: 60%;
+  margin-left: 20%;
+  padding-top: 20px
+}
+</style>

@@ -1,7 +1,8 @@
 <template>
-  <div style="padding-top: 20px">
+  <div class="my-main">
     <el-card class="course-title">
       <div v-for="(courses, index) in summary">
+        <el-link type="primary" style="float: right; margin-top: 10px" @click="">全部课程</el-link>
         <p> {{ index }} </p>
         <el-divider></el-divider>
         <el-row style="margin-top: 5px">
@@ -55,5 +56,4 @@ export default {
   margin-left: 10px;
   margin-bottom: 0;
 }
-
 </style>

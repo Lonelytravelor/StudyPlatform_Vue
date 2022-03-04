@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <el-card class="box-card" style="width: 60%; margin-left: 20%; margin-top: 20px">
+  <div class="my-main">
+    <el-card class="box-card">
       <p style="text-align: center; font-size: 26px"><b>所罗门性格测试</b></p>
       <div v-for="(question, index) in questions" class="text item" :key="question.natureTestId"
            style="margin-bottom: 10px;margin-left: 10px">
