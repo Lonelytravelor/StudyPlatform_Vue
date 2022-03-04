@@ -11,6 +11,7 @@ import test from "@/views/test";
 import PersonMessage from "@/views/PersonMessage";
 import PersonCenter from "@/views/PersonCenter";
 import CourseSummary from "@/views/CourseSummary";
+import AllCourseByLabel from "@/views/AllCourseByLabel";
 
 Vue.use(VueRouter)
 
@@ -43,6 +44,11 @@ const routes = [
       {
         path: '/CourseSummary',
         component: CourseSummary,
+      },
+      {
+        path: '/AllCourseByLabel/:label',
+        component: AllCourseByLabel,
+        props: true,
       },
     ]
   },

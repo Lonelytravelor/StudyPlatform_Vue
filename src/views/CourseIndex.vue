@@ -27,12 +27,14 @@
       <el-col :span="16">
         <div style="margin-right: 10px">
           <el-card class="box-card" body-style="round">
-            <el-tabs v-model="activeName">
+<!--        这里使用v-if 判断对象是否为空时提示对象不能为空，类型不交叉使得判断条件一直为ture ，原因是
+            v-if="courseSummary !== null"    时，我们在赋值的时候未加载到数据时会使用null覆盖       -->
+            <el-tabs v-model="activeName" v-if="courseSummary !== null">
               <el-tab-pane label="课程详情" name="first">
                 <i style="font-size: 13px">{{ courseSummary.summaryContent }}</i>
               </el-tab-pane>
             </el-tabs>
-            <el-tabs v-model="activeName">
+            <el-tabs v-model="activeName" v-if="courseAnnouncementList  !== null">
               <el-tab-pane label="课程公告" name="first">
                 <div v-for="item in courseAnnouncementList">
                   <b style="font-size: 13px;text-align-last:justify">{{ item.announcementTitle }}</b><br>
@@ -40,7 +42,7 @@
                 </div>
               </el-tab-pane>
             </el-tabs>
-            <el-tabs v-model="activeName">
+            <el-tabs v-model="activeName" v-if="courseReferenceList !== null">
               <el-tab-pane label="参考书籍" name="first">
                 <div v-for="item in courseReferenceList">
                   <cite style="font-size: 13px;text-align-last:justify">《{{ item.referenceName }}》</cite>
@@ -121,6 +123,9 @@ export default {
       that.courseSummary = response.data.courseSummary;
       that.courseAnnouncementList = response.data.courseAnnouncementList;
       that.courseReferenceList = response.data.courseReferenceList;
+      console.log(response.data.courseSummary)
+      console.log(typeof response.data.courseSummary)
+
     })
   }
 }
