@@ -14,7 +14,7 @@
                 <el-tag style="margin-left: 5px" size="mini" effect="dark">{{ course.courseLabel }}</el-tag>
               </div>
               <div style="margin-top: 20px;">
-                <el-button round>立即参加</el-button>
+                <el-button round @click="joinCourse">立即参加</el-button>
               </div>
             </div>
           </el-col>
@@ -86,16 +86,19 @@
 
 <script>
 import axios from "axios";
+import store from "@/vuex/store";
 
 export default {
   name: "CourseIndex",
   props:['courseId'],
+  store,
   data(){
     return{
       id: 0,
       activeName: "first",
       baseUrl: "http://localhost:9090/",
       course: {
+        courseId: -1,
         courseName: "",
         courseInstitution: "",
         courseTeacher: "",
@@ -125,8 +128,22 @@ export default {
       that.courseReferenceList = response.data.courseReferenceList;
       console.log(response.data.courseSummary)
       console.log(typeof response.data.courseSummary)
-
     })
+  },
+  methods: {
+    joinCourse() {
+      const that = this;
+      axios({
+        url: "http://localhost:9090/updateUserCourseByUserId",
+        method: "post",
+        data: {
+          courseId : this.courseId,
+          userId : this.$store.state.userId,
+        }
+      }).then(function (response) {
+        console.log(response.data)
+      })
+    }
   }
 }
 </script>
