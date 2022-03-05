@@ -4,7 +4,7 @@
       <p> 搜索结果 </p>
       <el-divider></el-divider>
       <el-row>
-        <el-card v-for="item in courses" :key="item.courseId">
+        <el-card v-for="item in courses" :key="item.courseId" shadow="never" style="padding-bottom: 10px">
           <el-col :span="6" >
               <el-image
                   style="width: 100%; margin-top: 5px; margin-bottom: 5px"

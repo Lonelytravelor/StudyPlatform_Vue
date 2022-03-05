@@ -139,41 +139,47 @@ export default {
       });
     },
     isSelectCourse() {
-      const that = this;
-      axios({
-        url: "http://localhost:9090/isSelectCourse",
-        method: "post",
-        data: {
-          courseId : this.courseId,
-          userId : this.$store.state.userId,
-        }
-      }).then(function (response) {
-        that.isSelected = response.data;
-      })
+      if (this.$store.state.userId !== -1){
+        const that = this;
+        axios({
+          url: "http://localhost:9090/isSelectCourse",
+          method: "post",
+          data: {
+            courseId : this.courseId,
+            userId : this.$store.state.userId,
+          }
+        }).then(function (response) {
+          that.isSelected = response.data;
+        })
+      }
     },
     joinCourse() {
-      const that = this;
-      axios({
-        url: "http://localhost:9090/updateUserCourseByUserId",
-        method: "post",
-        data: {
-          courseId : this.courseId,
-          userId : this.$store.state.userId,
-        }
-      }).then(function (response) {
-        if ( response.data === "success"){
-          that.isSelected = true;
-          that.$message({
-            message: '选课成功！',
-            type: 'success'
-          });
-        }else {
-          that.$message({
-            message: '选课失败，请稍后再试！',
-            type: 'warning'
-          });
-        }
-      })
+      if (this.$store.state.userId !== -1){
+        const that = this;
+        axios({
+          url: "http://localhost:9090/updateUserCourseByUserId",
+          method: "post",
+          data: {
+            courseId : this.courseId,
+            userId : this.$store.state.userId,
+          }
+        }).then(function (response) {
+          if ( response.data === "success"){
+            that.isSelected = true;
+            that.$message({
+              message: '选课成功！',
+              type: 'success'
+            });
+          }else {
+            that.$message({
+              message: '选课失败，请稍后再试！',
+              type: 'warning'
+            });
+          }
+        })
+      }else {
+        this.$router.push("/Login")
+      }
     }
   }
 }
