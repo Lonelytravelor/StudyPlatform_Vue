@@ -40,6 +40,9 @@ export default {
   created() {
     this.selectCourse();
   },
+  updated() {
+    this.selectCourse();
+  },
   methods: {
     toCourseIndex:function (courseId) {
       this.$router.push('/CourseIndex/' + courseId);
