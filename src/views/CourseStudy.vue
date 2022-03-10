@@ -1,0 +1,81 @@
+<template>
+  <div>
+    <el-container>
+      <el-aside style="height: 100%; margin-left: 15px; ">
+        <div style="width: 230px; height: 130px; margin-top: 20px">
+          <img :src="baseUrl + course.courseImageUrl" style="width: 100%;height: 100%; margin-right: 5px; border-radius:5px">
+        </div>
+        <el-menu style="height: 100%; width: 230px; overflow-x: hidden;  margin-top: 10px; border-radius:1px">
+          <el-menu-item index="0" @click="toCourseDetails">课程详情</el-menu-item>
+          <el-menu-item index="3" v-if="courseAnnouncementList  !== null">课程公告</el-menu-item>
+          <el-menu-item index="4" v-if="courseReferenceList !== null" @click="toCourseReference">参考书籍</el-menu-item>
+        </el-menu>
+      </el-aside>
+      <el-main>
+        <router-view></router-view>
+      </el-main>
+    </el-container>
+  </div>
+</template>
+
+<script>
+import axios from "axios";
+import router from "@/router";
+import store from "@/vuex/store";
+
+export default {
+  name: "CourseStudy",
+  store,
+  data(){
+    return{
+      id: 0,
+      activeName: "first",
+      isSelected: false,
+      baseUrl: "http://localhost:9090/",
+      course: {
+        courseId: -1,
+        courseName: "",
+        courseInstitution: "",
+        courseTeacher: "",
+        courseReleaseTime: "",
+        courseLabel: "",
+        courseImageUrl: "",
+        courseSelected: 0,
+      },
+      courseSummary: {
+        summaryContent: "",
+      },
+      courseAnnouncementList: [],
+      courseReferenceList: [],
+    }
+  },
+  created() {
+    const that = this;
+    axios({
+      url: "http://localhost:9090/loadCourseById",
+      params: {
+        id : this.$store.state.courseId
+      }
+    }).then(function (response) {
+      that.course = response.data;
+      that.courseSummary = response.data.courseSummary;
+      that.courseAnnouncementList = response.data.courseAnnouncementList;
+      that.courseReferenceList = response.data.courseReferenceList;
+    });
+    this.toCourseDetails();
+  },
+  methods: {
+    toCourseDetails() {
+      router.push('/CourseDetails')
+    },
+    toCourseReference() {
+      console.log("here!!!!!")
+      router.push('/CourseReference');
+    }
+  }
+}
+</script>
+
+<style scoped>
+
+</style>

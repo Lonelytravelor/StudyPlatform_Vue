@@ -16,7 +16,7 @@
               <div style="margin-top: 20px;">
                 <el-button v-show="!isSelected" round @click="joinCourse" style="width: 30%" type="primary">立即参加</el-button>
                 <!--      margin-left: 0px 用来解决莫名出现的左外边距10px的问题             -->
-                <el-button v-show="isSelected" round style="width: 30%;margin-left: 0px" type="primary">以参加,立即学习</el-button>
+                <el-button v-show="isSelected" round @click="toCourseStudy" style="width: 30%;margin-left: 0px" type="primary">以参加,立即学习</el-button>
               </div>
             </div>
           </el-col>
@@ -89,6 +89,7 @@
 <script>
 import axios from "axios";
 import store from "@/vuex/store";
+import router from "@/router";
 
 export default {
   name: "CourseIndex",
@@ -134,10 +135,9 @@ export default {
         that.courseSummary = response.data.courseSummary;
         that.courseAnnouncementList = response.data.courseAnnouncementList;
         that.courseReferenceList = response.data.courseReferenceList;
-        console.log(response.data.courseSummary)
-        console.log(typeof response.data.courseSummary)
       });
     },
+
     isSelectCourse() {
       if (this.$store.state.userId !== -1){
         const that = this;
@@ -153,6 +153,7 @@ export default {
         })
       }
     },
+
     joinCourse() {
       if (this.$store.state.userId !== -1){
         const that = this;
@@ -180,6 +181,10 @@ export default {
       }else {
         this.$router.push("/Login")
       }
+    },
+    toCourseStudy() {
+      this.$store.commit("updateCourseId", this.courseId)
+      router.push('/CourseStudy')
     }
   }
 }

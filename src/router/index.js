@@ -13,6 +13,7 @@ import PersonCenter from "@/views/PersonCenter";
 import CourseSummary from "@/views/CourseSummary";
 import AllCourseByLabel from "@/views/AllCourseByLabel";
 import SelectCourse from "@/views/SelectCourse";
+import CourseStudy from "@/views/CourseStudy";
 
 Vue.use(VueRouter)
 
@@ -55,6 +56,24 @@ const routes = [
         path: '/SelectCourse/:courseName',
         component: SelectCourse,
         props: true,
+      },
+      {
+        // path: '/CourseStudy',
+        // component: CourseStudy,
+        path: '/CourseStudy',
+        component: CourseStudy,
+        props: true,
+        children: [
+          {
+            path: '/CourseDetails',
+            component: () => import('../views/CourseDetails')
+          },
+          {
+            path: '/CourseReference',
+            component: () => import('../views/CourseReference'),
+            props: true,
+          }
+        ]
       },
     ]
   },

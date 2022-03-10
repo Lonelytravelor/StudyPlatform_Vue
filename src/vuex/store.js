@@ -7,6 +7,7 @@ const store = new Vuex.Store({
     state: {
         userName: "",
         userId: -1,
+        courseId: -1,
     },
     mutations: {
         setUserName(state, name) {
@@ -19,6 +20,9 @@ const store = new Vuex.Store({
             state.userName = "";
             state.userId = "";
         },
+        updateCourseId(state, courseId) {
+            state.courseId = courseId;
+        }
     }
 })
 

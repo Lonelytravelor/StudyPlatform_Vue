@@ -58,7 +58,7 @@ export default {
       this.isLogin = false
     },
     checkPassword: function () {
-      var res = true;
+      let res = true;
       if ( this.password !== this.confirm_password){
         res = false;
         this.$message({
@@ -69,7 +69,7 @@ export default {
       return res;
     },
     checkPasswordNotNull: function () {
-      var res = true;
+      let res = true;
       if ( this.password === "" ){
         res = false;
         this.$message({
@@ -80,8 +80,8 @@ export default {
       return res;
     },
     checkPhone: function () {
-      var res = true;
-      var regex = /^(13[0-9]{9})|(15[0-9]{9})|(17[0-9]{9})|(18[0-9]{9})|(19[0-9]{9})$/;
+      let res = true;
+      const regex = /^(13[0-9]{9})|(15[0-9]{9})|(17[0-9]{9})|(18[0-9]{9})|(19[0-9]{9})$/;
       if ( !this.userName.match(regex)){
         res = false;
         this.$message({
@@ -92,7 +92,7 @@ export default {
       return res;
     },
     login: function () {
-      var that = this;
+      const that = this;
       axios({
         url: "http://localhost:9090/login",
         method: "post",
