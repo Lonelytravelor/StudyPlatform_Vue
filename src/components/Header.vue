@@ -64,7 +64,14 @@
         this.$router.push('/Login');
       },
       toSelectCourse(){
-        this.$router.push('/SelectCourse/' + this.input);
+        let key = this.$route.fullPath;
+        this.$router.push({
+          path: '/SelectCourse/' + this.input,
+          query: {
+            key: key
+          }
+        });
+
       },
       command(command){
         if (command == 'a'){
