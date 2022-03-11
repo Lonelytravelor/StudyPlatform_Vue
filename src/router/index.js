@@ -71,7 +71,10 @@ const routes = [
           {
             path: '/CourseReference',
             component: () => import('../views/CourseReference'),
-            props: true,
+          },
+          {
+            path: '/CourseAnnouncement',
+            component: () => import('../views/CourseAnnouncement'),
           }
         ]
       },

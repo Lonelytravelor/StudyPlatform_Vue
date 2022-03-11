@@ -7,7 +7,7 @@
         </div>
         <el-menu style="height: 100%; width: 230px; overflow-x: hidden;  margin-top: 10px; border-radius:1px">
           <el-menu-item index="0" @click="toCourseDetails">课程详情</el-menu-item>
-          <el-menu-item index="3" v-if="courseAnnouncementList  !== null">课程公告</el-menu-item>
+          <el-menu-item index="3" v-if="courseAnnouncementList  !== null" @click="toCourseAnnouncement">课程公告</el-menu-item>
           <el-menu-item index="4" v-if="courseReferenceList !== null" @click="toCourseReference">参考书籍</el-menu-item>
         </el-menu>
       </el-aside>
@@ -69,8 +69,10 @@ export default {
       router.push('/CourseDetails')
     },
     toCourseReference() {
-      console.log("here!!!!!")
       router.push('/CourseReference');
+    },
+    toCourseAnnouncement() {
+      router.push('/CourseAnnouncement');
     }
   }
 }
