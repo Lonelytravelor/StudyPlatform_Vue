@@ -5,7 +5,7 @@
       " default-active="/">
         <el-menu-item index="/" style="font-size: 16px">首页</el-menu-item>
         <el-menu-item index="/CourseSummary" style="font-size: 16px">课程</el-menu-item>
-        <el-menu-item index="/school" style="font-size: 16px">学校</el-menu-item>
+        <el-menu-item index="/CourseUniversity" style="font-size: 16px">学校</el-menu-item>
         <el-button size="small" round class="header-right" type="primary" @click="toLogin"
                    v-if="this.$store.state.userName == '' "> 登录 / 注册 </el-button>
         <el-dropdown class="header-right"

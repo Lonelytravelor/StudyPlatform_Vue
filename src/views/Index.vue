@@ -10,7 +10,7 @@
             <span><p style="font-family: 微软雅黑; font-size: 13px"> {{ item.courseName }}</p></span>
             <span><p style="font-family: 微软雅黑; font-size: 10px"> {{ item.courseTeacher }}</p></span>
             <div>
-              <p style="font-family: 微软雅黑; font-size: 10px"> {{ item.courseInstitution }}</p>
+              <p style="font-family: 微软雅黑; font-size: 10px"> {{ item.courseUniversity }}</p>
             </div>
           </div>
         </el-card>

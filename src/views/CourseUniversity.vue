@@ -1,7 +1,7 @@
 <template>
   <div class="my-main">
     <el-card class="course-title">
-      <div v-for="(courses, index) in summary">
+      <div v-for="(courses, index) in university">
         <div v-if="courses.length !== 0">
           <el-link type="primary" style="float: right; margin-top: 10px" @click="toAllCourseByLabel(index)">全部课程</el-link>
           <p> {{ index }} </p>
@@ -29,19 +29,19 @@
 <script>
 import axios from "axios";
 export default {
-  name: "CourseSummary",
+  name: "CourseUniversity",
   data() {
     return {
       baseUrl: "http://localhost:9090/",
-      summary: []
+      university: []
     }
   },
   created() {
     const that =this;
     axios({
-      url: "http://localhost:9090/loadCourseSummary"
+      url: "http://localhost:9090/loadCourseUniversity"
     }).then(function (response) {
-      that.summary = response.data;
+      that.university = response.data;
     })
   },
   methods:{
