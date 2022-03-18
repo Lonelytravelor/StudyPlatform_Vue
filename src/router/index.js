@@ -15,6 +15,7 @@ import AllCourseByLabel from "@/views/AllCourseByLabel";
 import SelectCourse from "@/views/SelectCourse";
 import CourseStudy from "@/views/CourseStudy";
 import CourseUniversity from "@/views/CourseUniversity";
+import AllCourseByUniversity from "@/views/AllCourseByUniversity";
 
 Vue.use(VueRouter)
 
@@ -55,6 +56,11 @@ const routes = [
       {
         path: '/AllCourseByLabel/:label',
         component: AllCourseByLabel,
+        props: true,
+      },
+      {
+        path: '/AllCourseByUniversity/:university',
+        component: AllCourseByUniversity,
         props: true,
       },
       {

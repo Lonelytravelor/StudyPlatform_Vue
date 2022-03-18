@@ -48,8 +48,8 @@ export default {
     toCourseIndex (courseId) {
       this.$router.push('/CourseIndex/' + courseId);
     },
-    toAllCourseByLabel(label){
-      this.$router.push('/AllCourseByLabel/' + label);
+    toAllCourseByLabel(university){
+      this.$router.push('/AllCourseByUniversity/' + university);
     }
   }
 }
