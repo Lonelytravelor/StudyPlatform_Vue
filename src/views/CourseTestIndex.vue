@@ -6,8 +6,8 @@
           <el-row>
             <el-card shadow="never"style="margin-bottom: 10px">
               <el-col :span="24" >
-                第一章
-                <el-button style="float: right" type="primary">测试</el-button>
+                {{ courseTitle }}
+                <el-button style="float: right" type="primary" @click="toCourseTest">测试</el-button>
               </el-col>
             </el-card>
           </el-row>
@@ -39,6 +39,12 @@ export default {
   data(){
     return{
       activeName: "first",
+      courseTitle: "第一章测试题"
+    }
+  },
+  methods: {
+    toCourseTest() {
+      this.$router.push("/CourseTest/" + this.courseTitle)
     }
   }
 }

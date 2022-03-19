@@ -90,7 +90,12 @@ const routes = [
           {
             path: '/CourseTestIndex',
             component: () => import('../views/CourseTestIndex'),
-          }
+          },
+          {
+            path: '/CourseTest/:testTitle',
+            component: () => import('../views/CourseTest'),
+            props: true,
+          },
         ]
       },
     ]

@@ -5,8 +5,8 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
     state: {
-        userName: "",
-        userId: -1,
+        userName: "19845949903",
+        userId: 1,
         courseId: -1,
     },
     mutations: {
