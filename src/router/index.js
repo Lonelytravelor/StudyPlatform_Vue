@@ -86,6 +86,10 @@ const routes = [
           {
             path: '/CourseAnnouncement',
             component: () => import('../views/CourseAnnouncement'),
+          },
+          {
+            path: '/CourseTestIndex',
+            component: () => import('../views/CourseTestIndex'),
           }
         ]
       },
