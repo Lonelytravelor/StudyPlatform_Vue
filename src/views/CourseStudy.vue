@@ -1,23 +1,25 @@
 <template>
   <div>
-    <el-container>
-      <el-aside style="height: 100%; margin-left: 15px; ">
-        <div style="width: 230px; height: 130px; margin-top: 20px">
-          <img :src="baseUrl + course.courseImageUrl" style="width: 100%;height: 100%; margin-right: 5px; border-radius:5px">
+    <el-row>
+      <el-col :span="3" >
+        <div style="margin-left: 5%">
+          <div style="width: 230px; height: 130px; margin-top: 20px">
+            <img :src="baseUrl + course.courseImageUrl" style="width: 100%;height: 100%; margin-right: 5px; border-radius:5px">
+          </div>
+          <el-menu style="height: 100%; width: 230px; overflow-x: hidden;  margin-top: 10px; border-radius:1px">
+            <el-menu-item index="0" @click="toCourseDetails">课程详情</el-menu-item>
+            <el-menu-item index="1" v-if="courseAnnouncementList !== null" @click="toCourseAnnouncement">课程公告</el-menu-item>
+            <el-menu-item index="2" v-if="courseAnnouncementList !== null" @click="toCourseAnnouncement">课件学习</el-menu-item>
+            <el-menu-item index="3" v-if="courseAnnouncementList !== null" @click="toCourseAnnouncement">学习资源</el-menu-item>
+            <el-menu-item index="4" v-if="courseAnnouncementList !== null" @click="toCourseTestIndex">考试测验</el-menu-item>
+            <el-menu-item index="5" v-if="courseReferenceList !== null" @click="toCourseReference">参考书籍</el-menu-item>
+          </el-menu>
         </div>
-        <el-menu style="height: 100%; width: 230px; overflow-x: hidden;  margin-top: 10px; border-radius:1px">
-          <el-menu-item index="0" @click="toCourseDetails">课程详情</el-menu-item>
-          <el-menu-item index="1" v-if="courseAnnouncementList !== null" @click="toCourseAnnouncement">课程公告</el-menu-item>
-          <el-menu-item index="2" v-if="courseAnnouncementList !== null" @click="toCourseAnnouncement">课件学习</el-menu-item>
-          <el-menu-item index="3" v-if="courseAnnouncementList !== null" @click="toCourseAnnouncement">学习资源</el-menu-item>
-          <el-menu-item index="4" v-if="courseAnnouncementList !== null" @click="toCourseTestIndex">考试测验</el-menu-item>
-          <el-menu-item index="5" v-if="courseReferenceList !== null" @click="toCourseReference">参考书籍</el-menu-item>
-        </el-menu>
-      </el-aside>
-      <el-main>
+      </el-col>
+      <el-col :span="21" style="margin-top: 20px; padding-left: 2%" >
         <router-view></router-view>
-      </el-main>
-    </el-container>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
@@ -84,6 +86,8 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style>
+.study-left{
+  margin-left: 2%
+}
 </style>
