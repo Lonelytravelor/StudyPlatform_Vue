@@ -69,7 +69,12 @@ export default {
   },
   methods: {
     checkAnswers(){
-      return (this.answers.length === 44)
+      for (let i = 0; i < 44; i++){
+        if (this.answers[i] == null) {
+          return false;
+        }
+      }
+      return true;
     },
     toIndex(){
       this.centerDialogVisible = false;

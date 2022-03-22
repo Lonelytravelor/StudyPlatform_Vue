@@ -10,12 +10,16 @@
           <span style="font-size: 14px; margin-right: 10px">({{ question.questionScore }}分)</span>
           <span>{{ question.questionContent }}（&nbsp;）</span>
         </div>
-        <div v-if="question.questionStyle === '单选题'">
-          <el-radio-group v-model="answers[index]" style="margin-top: 15px; margin-left: 20px" :disabled="disable">
+        <div v-if="question.questionStyle === '单选题' || question.questionStyle === '判断题'">
+          <el-radio-group v-if="question.questionStyle === '单选题'" v-model="answers[index]" style="margin-top: 15px; margin-left: 20px" :disabled="disable">
             <el-radio class="radio-bottom" label="A">A.{{ question.questionAnswerA }}</el-radio><br>
             <el-radio class="radio-bottom" label="B">B.{{ question.questionAnswerB }}</el-radio><br>
             <el-radio class="radio-bottom" label="C">C.{{ question.questionAnswerC }}</el-radio><br>
             <el-radio class="radio-bottom" label="D">D.{{ question.questionAnswerD }}</el-radio>
+          </el-radio-group>
+          <el-radio-group v-if="question.questionStyle === '判断题'" v-model="answers[index]" style="margin-top: 15px; margin-left: 20px" :disabled="disable">
+            <el-radio class="radio-bottom" label="A">A.{{ question.questionAnswerA }}</el-radio><br>
+            <el-radio class="radio-bottom" label="B">B.{{ question.questionAnswerB }}</el-radio>
           </el-radio-group>
           <el-card :class="answers[index] === question.questionAnswer ? success_card : fail_card" v-if="isSubmit" shadow="never" >
             <div style="margin-bottom: 10px">
@@ -52,6 +56,13 @@
         提交
       </el-button>
     </el-card>
+    <el-dialog
+        title="测试成绩"
+        :visible.sync="scoreVisible"
+        width="35%">
+      <strong>你的分数为： </strong>{{ score }}<br><br>
+
+    </el-dialog>
   </div>
 </template>
 
@@ -72,7 +83,9 @@ export default {
       success_card: "box-card success-card",
       isCorrectAnswer: false,
       score: 0,
-      disable: false
+      disable: false,
+      scoreVisible: false,
+      testId: -1,
     }
   },
   created() {
@@ -86,15 +99,39 @@ export default {
       }
     }).then(function (response) {
       that.questionList = response.data.questionList;
+      that.testId = response.data.testId;
     })
   },
   methods: {
     onSubmit() {
-      this.isSubmit = true;
-      this.initScore();
-      this.compileScope();
-      this.setDisable();
-      console.log("你的分数是：" + this.score)
+      if (this.isNotEmpty()){
+        this.isSubmit = true;
+        this.initScore();
+        this.compileScope();
+        this.setDisable();
+        console.log("你的分数是：" + this.score)
+        this.setScoreVisible();
+        this.resultSubmit()
+      }else {
+        this.$message({
+          message: '您还有没有填完的选项，请完善您的答案！',
+          showClose: true,
+          type: 'warning',
+        })
+      }
+    },
+    resultSubmit(){
+      let that = this;
+      axios({
+        url: "http://localhost:9090/submitTest",
+        method: "post",
+        data:{
+          testId: this.testId,
+          testScore: this.score,
+          singleAnswers: this.answers,
+          multipleAnswers: this.list,
+        }
+      })
     },
     isCorrect(answers, questionAnswers){
       const questionList = questionAnswers.split(",");
@@ -107,7 +144,7 @@ export default {
       let answerSingleList = this.answers.slice();
       let answerMultipleList = this.list.slice();
       for (let i = 0; i < questionList.length; i++){
-        if (questionList[i].questionStyle === '单选题'){
+        if (questionList[i].questionStyle === '单选题' || questionList[i].questionStyle === '判断题'){
           if (questionList[i].questionAnswer === answerSingleList[i]){
             this.score += questionList[i].questionScore;
           }
@@ -118,11 +155,28 @@ export default {
         }
       }
     },
+    isNotEmpty(){
+      let res = true;
+      for (let i = 0; i <15; i++) {
+        if (this.answers[i] == null) {
+          return false;
+        }
+      }
+      for (let i = 15; i < this.list.length; i++){
+        if (this.list[i].length === 0 ){
+          return false;
+        }
+      }
+      return res;
+    },
     initScore(){
       this.score = 0;
     },
     setDisable(){
       this.disable = true;
+    },
+    setScoreVisible(){
+      this.scoreVisible = true
     }
   }
 }
