@@ -52,7 +52,7 @@
           </el-card>
         </div>
       </div>
-      <el-button @click="onSubmit"  type="primary" style="margin-left: 40%; margin-top: 20px; width: 20%" >
+      <el-button @click="onSubmit"  type="primary" style="margin-left: 40%; margin-top: 20px; width: 20%" v-show="!disable">
         提交
       </el-button>
     </el-card>

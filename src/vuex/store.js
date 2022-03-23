@@ -5,7 +5,7 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
     state: {
-        userName: "19845949903",
+        userName: "1746384966",
         userId: 1,
         courseId: -1,
     },

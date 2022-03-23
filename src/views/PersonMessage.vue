@@ -5,8 +5,7 @@
         <el-card class="box-card">
           <div slot="header" class="clearfix">
             <span>基本资料</span>
-            <el-link type="primary" style="float: right; margin-top: 10px"
-                     @click="dialogFormVisible = true">完善信息</el-link>
+            <el-link type="primary" style="float: right; margin-top: 10px" @click="dialogFormVisible = true">完善信息</el-link>
           </div>
           <el-descriptions :column="num">
             <el-descriptions-item label="年   龄 ">{{ userBasic.userAge }}</el-descriptions-item>
