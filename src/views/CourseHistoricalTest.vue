@@ -21,10 +21,12 @@
             <el-radio class="radio-bottom" label="A">A.{{ question.questionAnswerA }}</el-radio><br>
             <el-radio class="radio-bottom" label="B">B.{{ question.questionAnswerB }}</el-radio>
           </el-radio-group>
-          <el-card :class="answers[index] === question.questionAnswer ? success_card : fail_card" v-if="isSubmit" shadow="never" >
+          <el-card :class="answers[index] === question.questionAnswer ? success_card : fail_card" shadow="never" >
             <div style="margin-bottom: 10px">
               <span>正确答案：</span>{{ question.questionAnswer }}
-              <span class="question-content" style="margin-bottom: 10px">你的选择是：{{ answers[index] }}</span>
+              <span class="question-content" style="margin-bottom: 10px">你的选择是：</span>
+              <i style="font-size: 14px" v-if="answers[index] != null">{{ answers[index] }}</i>
+              <i style="font-size: 14px" v-else>你没有选择任何选项</i>
             </div>
             <div class="question-content">
               <span>所属知识点：{{ question.questionPoint }}</span><br>
@@ -39,7 +41,7 @@
             <el-checkbox class="radio-bottom" label="C">C.{{ question.questionAnswerC }}</el-checkbox><br>
             <el-checkbox class="radio-bottom" label="D">D.{{ question.questionAnswerD }}</el-checkbox>
           </el-checkbox-group>
-          <el-card :class="isCorrect(list[index], question.questionAnswer) ? success_card : fail_card" v-if="isSubmit" shadow="never" >
+          <el-card :class="isCorrect(list[index], question.questionAnswer) ? success_card : fail_card" shadow="never" >
             <div style="margin-bottom: 10px">
               <span>正确答案：</span>{{ question.questionAnswer }}
               <span class="question-content">你的选择是：</span>
@@ -52,139 +54,62 @@
           </el-card>
         </div>
       </div>
-      <el-button @click="onSubmit"  type="primary" style="margin-left: 40%; margin-top: 20px; width: 20%" v-show="!disable">
-        提交
-      </el-button>
     </el-card>
     <el-dialog
         title="测试成绩"
         :visible.sync="scoreVisible"
         width="35%">
       <strong>你的分数为： </strong>{{ score }}<br><br>
-
     </el-dialog>
   </div>
 </template>
 
 <script>
 import axios from "axios";
-import test from "@/views/test";
 
 export default {
-  name: "CourseTest",
-  props: ["testTitle"],
+  name: "CourseHistoricalTest",
+  props: ["testId"],
   data(){
     return{
       questionList: [],
       answers: [],
-      isSubmit: false,
       list: [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]],
       fail_card: "box-card fail-card",
       success_card: "box-card success-card",
       isCorrectAnswer: false,
       score: 0,
-      disable: false,
+      disable: true,
       scoreVisible: false,
-      testId: -1,
+      testTitle: "",
     }
   },
   created() {
     let that = this;
     axios({
-      url: "http://localhost:9090/createTest",
+      url: "http://localhost:9090/loadHistoricalTestByTestId",
       params:{
-        title: this.testTitle,
-        userId: this.$store.state.userId,
-        courseId: this.$store.state.courseId,
+        testId: this.testId,
       }
     }).then(function (response) {
       that.questionList = response.data.questionList;
-      that.testId = response.data.testId;
-      if ( response.data.testState === "已完成" ){
-        let arraylist = response.data.testAnswerList;
-        let i = 0;
-        for (; i < 15; i++){
-          that.answers[i] = arraylist[i];
-        };
-        for (; i < 20; i++){
-          that.list[i] = arraylist[i].split();
-        }
-        that.setDisable();
-      }
+      that.testTitle = response.data.testTitle;
+      let arraylist = response.data.testAnswerList.split(",");
+      let i = 0;
+      for (; i < 15; i++){
+        that.answers[i] = arraylist[i];
+      };
+      for (; i < 20; i++){
+        that.list[i] = arraylist[i].split("");
+      };
     })
   },
   methods: {
-    onSubmit() {
-      if (this.isNotEmpty()){
-        this.isSubmit = true;
-        this.initScore();
-        this.compileScope();
-        this.setDisable();
-        console.log("你的分数是：" + this.score)
-        this.setScoreVisible();
-        this.resultSubmit()
-      }else {
-        this.$message({
-          message: '您还有没有填完的选项，请完善您的答案！',
-          showClose: true,
-          type: 'warning',
-        })
-      }
-    },
-    resultSubmit(){
-      let that = this;
-      axios({
-        url: "http://localhost:9090/submitTest",
-        method: "post",
-        data:{
-          testId: this.testId,
-          testScore: this.score,
-          singleAnswers: this.answers,
-          multipleAnswers: this.list,
-        }
-      })
-    },
     isCorrect(answers, questionAnswers){
       const questionList = questionAnswers.split(",");
       const answerList = answers.slice();
       const res =  questionList.sort().toString() === answerList.sort().toString()
       return res;
-    },
-    compileScope() {
-      let questionList = this.questionList.slice();
-      let answerSingleList = this.answers.slice();
-      let answerMultipleList = this.list.slice();
-      for (let i = 0; i < questionList.length; i++){
-        if (questionList[i].questionStyle === '单选题' || questionList[i].questionStyle === '判断题'){
-          if (questionList[i].questionAnswer === answerSingleList[i]){
-            this.score += questionList[i].questionScore;
-          }
-        }else if (questionList[i].questionStyle === '多选题'){
-          if (this.isCorrect(answerMultipleList[i], questionList[i].questionAnswer)){
-            this.score += questionList[i].questionScore;
-          }
-        }
-      }
-    },
-    isNotEmpty(){
-      let res = true;
-      for (let i = 0; i <15; i++) {
-        if (this.answers[i] == null) {
-          return false;
-        }
-      }
-      for (let i = 15; i < this.list.length; i++){
-        if (this.list[i].length === 0 ){
-          return false;
-        }
-      }
-      return res;
-    },
-    initScore(){
-      this.score = 0;
-    },
-    setDisable(){
-      this.disable = true;
     },
     setScoreVisible(){
       this.scoreVisible = true

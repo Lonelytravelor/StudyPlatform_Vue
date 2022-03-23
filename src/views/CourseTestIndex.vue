@@ -4,7 +4,7 @@
       <div slot="header" class="clearfix">
         <span>基本资料</span>
         <el-link type="primary" style="float: right; margin-top: 10px" v-if="!isHistory" @click="showHistory">查看历史测验</el-link>
-        <el-link type="primary" style="float: right; margin-top: 10px" v-else @click="showHistory">查看历史测验</el-link>
+        <el-link type="primary" style="float: right; margin-top: 10px" v-else @click="showHistory">返回</el-link>
       </div>
       <div v-if="!isHistory">
         <el-card shadow="never"style="margin-bottom: 10px">
@@ -31,7 +31,7 @@
           <i style="font-size: 14px; padding-left: 12px; padding-right: 12px"> {{ test.testTime.replace("T"," ") }}</i>
           <i style="font-size: 14px;" v-if="test.testScore != null" > {{ test.testScore }}分</i>
           <i style="font-size: 14px;" v-else> 未完成 </i>
-          <el-button style="float: right" type="primary" @click="toCourseTest( courseTitle2 )">查看详情</el-button>
+          <el-button style="float: right" type="primary" @click="toCourseHistoricalTest(test.testId)">查看详情</el-button>
         </el-card>
       </div>
     </el-card>
@@ -56,6 +56,9 @@ export default {
   methods: {
     toCourseTest(title) {
       this.$router.push("/CourseTest/" + title)
+    },
+    toCourseHistoricalTest(testId) {
+      this.$router.push("/CourseHistoricalTest/" + testId)
     },
     showHistory(){
       if (!this.isSelect){
