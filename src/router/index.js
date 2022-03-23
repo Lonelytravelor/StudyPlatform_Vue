@@ -74,6 +74,7 @@ const routes = [
         path: '/CourseStudy',
         component: CourseStudy,
         props: true,
+        redirect: '/CourseDetails',
         children: [
           {
             path: '/CourseDetails',
