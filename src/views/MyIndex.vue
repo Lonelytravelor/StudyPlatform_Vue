@@ -48,7 +48,7 @@
 
       <el-container>
         <el-header style=" font-size: 12px; border-bottom: 1px solid #ccc; line-height: 60px; display: flex">
-          <div style="flex: 1; font-size: 18px">
+          <div style="flex: 0; font-size: 18px">
             <span :class="collapseBtnClass" style="cursor: pointer" @click="collapse"></span>
           </div>
           <el-dropdown style="width: 70px; cursor: pointer" >
@@ -59,6 +59,7 @@
             </el-dropdown-menu>
           </el-dropdown>
         </el-header>
+
 
         <el-main>
           <div style="margin-bottom: 15px">

@@ -1,15 +1,16 @@
 <template>
-<div style=" margin-right: 180px; min-height: 300px;">
-  <el-tabs v-model="activeName" style="background-color: white; padding-left: 20px;">
-    <el-tab-pane label="参考书籍" name="first">
+  <div style=" margin-right: 180px; min-height: 300px;">
+    <el-card style="background-color: white; padding-left: 20px;">
+      <div slot="header" class="clearfix">
+        <span>参考书籍</span>
+      </div>
       <div v-for="item in courseReferenceList">
         <cite style="font-size: 13px;text-align-last:justify">《{{ item.referenceName }}》</cite>
         <i style="font-size: 10px">{{ item.referenceAuthor }}</i>
         <i style="font-size: 10px">{{ item.referencePress }}</i>
       </div>
-    </el-tab-pane>
-  </el-tabs>
-</div>
+    </el-card>
+  </div>
 </template>
 
 <script>

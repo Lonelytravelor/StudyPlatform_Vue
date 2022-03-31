@@ -102,6 +102,10 @@ const routes = [
             component: () => import('../views/CourseHistoricalTest'),
             props: true,
           },
+          {
+            path: '/CourseWare',
+            component: () => import('../views/CourseWare'),
+          }
         ]
       },
     ]

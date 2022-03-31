@@ -9,7 +9,7 @@
           <el-menu style="height: 100%; width: 230px; overflow-x: hidden;  margin-top: 10px; border-radius:1px">
             <el-menu-item index="0" @click="toCourseDetails">课程详情</el-menu-item>
             <el-menu-item index="1" v-if="courseAnnouncementList !== null" @click="toCourseAnnouncement">课程公告</el-menu-item>
-            <el-menu-item index="2" v-if="courseAnnouncementList !== null" @click="toCourseAnnouncement">课件学习</el-menu-item>
+            <el-menu-item index="2" v-if="courseAnnouncementList !== null" @click="toCourseWare">课件学习</el-menu-item>
             <el-menu-item index="3" v-if="courseAnnouncementList !== null" @click="toCourseAnnouncement">学习资源</el-menu-item>
             <el-menu-item index="4" v-if="courseAnnouncementList !== null" @click="toCourseTestIndex">考试测验</el-menu-item>
             <el-menu-item index="5" v-if="courseReferenceList !== null" @click="toCourseReference">参考书籍</el-menu-item>
@@ -81,6 +81,9 @@ export default {
     },
     toCourseTestIndex() {
       router.push('/CourseTestIndex');
+    },
+    toCourseWare() {
+      router.push('/CourseWare');
     }
   }
 }

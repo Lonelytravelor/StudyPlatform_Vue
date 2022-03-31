@@ -1,12 +1,13 @@
 <template>
   <div style=" margin-right: 180px; min-height: 300px;">
-    <el-tabs v-model="activeName" style="background-color: white; padding-left: 20px;">
-      <el-tab-pane label="课程详情" name="first">
-        <div style="padding-left: 15px; padding-right: 15px">
-          <i>{{ this.summaryContent }}</i>
-        </div>
-      </el-tab-pane>
-    </el-tabs>
+    <el-card style="background-color: white; padding-left: 20px;">
+      <div slot="header" class="clearfix">
+        <span>课程详情</span>
+      </div>
+      <div style="padding-left: 15px; padding-right: 15px">
+        <i>{{ this.summaryContent }}</i>
+      </div>
+    </el-card>
   </div>
 </template>
 

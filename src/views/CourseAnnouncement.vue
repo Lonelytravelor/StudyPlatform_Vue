@@ -1,13 +1,14 @@
 <template>
   <div style=" margin-right: 180px; min-height: 300px;">
-    <el-tabs v-model="activeName" style="background-color: white; padding-left: 20px;">
-      <el-tab-pane label="参考书籍" name="first">
-        <div v-for="item in courseAnnouncementList">
-          <b style="font-size: 13px;text-align-last:justify">{{ item.announcementTitle }}</b><br>
-          <i style="font-size: 10px">{{ item.announcementContent }}</i>
-        </div>
-      </el-tab-pane>
-    </el-tabs>
+    <el-card style="background-color: white; padding-left: 20px;">
+      <div slot="header" class="clearfix">
+        <span>课程公告</span>
+      </div>
+      <div v-for="item in courseAnnouncementList">
+        <b style="font-size: 13px;text-align-last:justify">{{ item.announcementTitle }}</b><br>
+        <i style="font-size: 10px">{{ item.announcementContent }}</i>
+      </div>
+    </el-card>
   </div>
 </template>
 
