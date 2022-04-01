@@ -69,8 +69,6 @@ const routes = [
         props: true,
       },
       {
-        // path: '/CourseStudy',
-        // component: CourseStudy,
         path: '/CourseStudy',
         component: CourseStudy,
         props: true,
@@ -103,8 +101,19 @@ const routes = [
             props: true,
           },
           {
-            path: '/CourseWare',
+            path: '/CourseWareIndex',
+            component: () => import('../views/CourseWareIndex'),
+          },
+          {
+            path: '/CourseWare/:courseWareId?',
             component: () => import('../views/CourseWare'),
+            children: [
+              {
+                path: '/CourseWareShow/:courseWareId',
+                component: () => import('../views/CourseWareShow'),
+                props: true
+              }
+            ]
           }
         ]
       },

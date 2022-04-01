@@ -1,35 +1,72 @@
 <template>
   <div style=" margin-right: 180px; min-height: 300px;">
     <el-card style="background-color: white; padding-left: 20px;">
-      <div slot="header" class="clearfix">
-        <span>课件</span>
-      </div>
-      <div>
-        <el-card style="width: 98%; height: 60px; margin-left: 1%; cursor: pointer" shadow="hover" >
-          <span style="font-size: 18px" >第一章 数理结构</span>
-        </el-card>
-        <div v-show="isShow">
-          <div style="margin-left: 50px">
-            <span style="font-size: 16px">第一节 创建者模式</span>
-            <div style="margin-left: 50px">
-              <span style="font-size: 16px">单例模式</span><br>
-              <span style="font-size: 16px">抽象工厂模式</span><br>
-              <span style="font-size: 16px">原型模式</span><br>
-              <span style="font-size: 16px">建造者模式</span><br>
-            </div>
-          </div>
-        </div>
+      <el-breadcrumb separator-class="el-icon-arrow-right">
+        <el-breadcrumb-item :to="{ path: '/' }" style="margin-top: 7px">
+          <span style="font-size: 15px;">课件</span>
+        </el-breadcrumb-item>
+        <el-breadcrumb-item>
+          <el-select size="mini" v-model="value" placeholder="请选择" @change="showWare">
+            <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+            </el-option>
+          </el-select>
+        </el-breadcrumb-item>
+        <el-breadcrumb-item>
+          <el-select size="mini" v-model="value" placeholder="请选择" @change="showWare">
+            <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+            </el-option>
+          </el-select>
+        </el-breadcrumb-item>
+        <el-breadcrumb-item>
+          <el-select size="mini" v-model="value" placeholder="请选择" @change="showWare">
+            <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+            </el-option>
+          </el-select>
+        </el-breadcrumb-item>
+      </el-breadcrumb>
+      <el-divider></el-divider>
+      <div style="width: 100%; margin-top: 20px">
+        <router-view></router-view>
       </div>
     </el-card>
   </div>
 </template>
 
 <script>
+import router from "@/router";
+
 export default {
   name: "CourseWare",
+  props: ["courseWareId"],
   data() {
     return {
-      isShow : true
+      video: "",
+      options: [{
+        value: '选项1',
+        label: '黄金糕'
+      }, {
+        value: '选项2',
+        label: '双皮奶'
+      }, {
+        value: '选项3',
+        label: '蚵仔煎'
+      }, {
+        value: '选项4',
+        label: '龙须面'
+      }, {
+        value: '选项5',
+        label: '北京烤鸭'
+      }],
+      value: '',
+      points: ["建造者模式", "单例模式", "工厂模式", "原型模式"],
+    }
+  },
+  created() {
+    this.showWare()
+  },
+  methods: {
+    showWare() {
+      router.push('/CourseWareShow/' + this.courseWareId);
     }
   }
 }
