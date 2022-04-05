@@ -14,7 +14,14 @@
               <span style="font-size: 16px">第{{ index+1 }}节 {{ point2.name }}</span>
               <div style="margin-left: 15px">
                 <div v-for="(point3, index) in point2.nextPoints" :key="point3.id">
-                  <el-link @click="ToCourseWareShow(point3.name)">{{ point3.name }}</el-link>
+                  <div v-for="video in point3.videoList">
+                    <i class="el-icon-video-play" style="margin-right: 4px"></i>
+                    <el-link @click="ToCourseWare(point3.name, video)" style="font-size: 15px">{{ point3.name }}</el-link>
+                  </div>
+                  <div v-for="file in point3.fileList">
+                    <i class="el-icon-document-remove" style="margin-right: 4px"></i>
+                    <el-link @click="ToCourseWare(point3.name, file)" style="font-size: 15px">{{ point3.name }}</el-link>
+                  </div>
                 </div>
               </div>
             </div>
@@ -47,13 +54,12 @@ export default {
         // courseId: 1,
       }
     }).then(function (response) {
-      console.log(response.data);
       that.courseIndex = response.data.nextPoints;
     })
   },
   methods: {
-    ToCourseWareShow(point) {
-      router.push('/CourseWare/' + this.courseWareId + '/' + "point");
+    ToCourseWare(name, file) {
+      router.push('/CourseWare/' + name + '/' + file);
     }
   }
 }

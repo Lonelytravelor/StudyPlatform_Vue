@@ -27,7 +27,9 @@
               <span class="question-content" style="margin-bottom: 10px">你的选择是：{{ answers[index] }}</span>
             </div>
             <div class="question-content">
-              <span>所属知识点：{{ question.questionPoint }}</span><br>
+              <span>所属知识点：
+                <el-link @click="loadPrePoint(question.questionPoint)"> {{ question.questionPoint }}</el-link>
+              </span><br>
               <span>答案解析：{{ question.questionAnswerExplain }}</span>
             </div>
           </el-card>
@@ -46,7 +48,9 @@
               <span class="question-content" v-for="selected in list[index]">{{ selected }}</span>
             </div>
             <div class="question-content">
-              <span>所属知识点：{{ question.questionPoint }}</span><br>
+              <span>所属知识点：
+                <el-link @click="loadPrePoint(question.questionPoint)"> {{ question.questionPoint }}</el-link>
+              </span><br>
               <span>答案解析：{{ question.questionAnswerExplain }}</span>
             </div>
           </el-card>
@@ -61,14 +65,38 @@
         :visible.sync="scoreVisible"
         width="35%">
       <strong>你的分数为： </strong>{{ score }}<br><br>
-
     </el-dialog>
+    <el-dialog :visible.sync="pointVisible">
+      <div class="block">
+        <el-timeline>
+          <el-timeline-item v-for="(point, index) in points" :key="point.id">
+            <span style="font-size: 16px">第{{ index+1 }}节 {{ point.name }}</span>
+            <div style="margin-left: 15px">
+              <div v-for="(point1, index) in point.nextPoints" :key="point1.id">
+                <div v-for="video in point1.videoList">
+                  <i class="el-icon-video-play" style="margin-right: 4px"></i>
+                  <el-link @click="ToCourseWare(point1.name, video)" style="font-size: 15px">{{ point1.name }}</el-link>
+                </div>
+                <div v-for="file in point1.fileList">
+                  <i class="el-icon-document-remove" style="margin-right: 4px"></i>
+                  <el-link @click="ToCourseWare(point1.name, file)" style="font-size: 15px">{{ point1.name }}</el-link>
+                </div>
+              </div>
+            </div>
+          </el-timeline-item>
+        </el-timeline>
+      </div>
+    </el-dialog>
+    <el-button @click="loadPrePoint">
+      hereeeeeeeeee
+    </el-button>
   </div>
 </template>
 
 <script>
 import axios from "axios";
 import test from "@/views/test";
+import router from "@/router";
 
 export default {
   name: "CourseTest",
@@ -85,7 +113,9 @@ export default {
       score: 0,
       disable: false,
       scoreVisible: false,
+      pointVisible: false,
       testId: -1,
+      points: [],
     }
   },
   created() {
@@ -188,6 +218,22 @@ export default {
     },
     setScoreVisible(){
       this.scoreVisible = true
+    },
+    loadPrePoint(point) {
+      this.pointVisible = true;
+      let that = this;
+      axios({
+        url: "http://localhost:9090/loadPrePoint",
+        params:{
+          point: point,
+        }
+      }).then(function (response) {
+        that.points = response.data;
+      })
+      that.pointVisible = true;
+    },
+    ToCourseWare(name, file) {
+      router.push('/CourseWare/' + name + '/' + file);
     }
   }
 }

@@ -105,15 +105,9 @@ const routes = [
             component: () => import('../views/CourseWareIndex'),
           },
           {
-            path: '/CourseWare/:courseWareId?/:point?',
+            path: '/CourseWare/:name?/:file?',
             component: () => import('../views/CourseWare'),
-            children: [
-              {
-                path: '/CourseWareShow/:courseWareId',
-                component: () => import('../views/CourseWareShow'),
-                props: true
-              }
-            ]
+            props: true
           }
         ]
       },
