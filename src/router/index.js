@@ -105,7 +105,7 @@ const routes = [
             component: () => import('../views/CourseWareIndex'),
           },
           {
-            path: '/CourseWare/:courseWareId?',
+            path: '/CourseWare/:courseWareId?/:point?',
             component: () => import('../views/CourseWare'),
             children: [
               {

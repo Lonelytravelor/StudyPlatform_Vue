@@ -9,12 +9,12 @@
           <template slot="title">
             <span style="font-size: 18px" >第{{ index+1 }}章 {{ point1.name }}</span>
           </template>
-          <div style="margin-left: 20px">
+          <div style="margin-left: 15px">
             <div v-for="(point2, index) in point1.nextPoints" :key="point2.id">
               <span style="font-size: 16px">第{{ index+1 }}节 {{ point2.name }}</span>
-              <div style="margin-left: 20px">
+              <div style="margin-left: 15px">
                 <div v-for="(point3, index) in point2.nextPoints" :key="point3.id">
-                  <el-link @click="ToCourseWareShow">{{ point3.name }}</el-link>
+                  <el-link @click="ToCourseWareShow(point3.name)">{{ point3.name }}</el-link>
                 </div>
               </div>
             </div>
@@ -35,7 +35,6 @@ export default {
     return {
       isShow : true,
       courseWareId: 1,
-      points: ["建造者模式", "单例模式", "工厂模式", "原型模式"],
       courseIndex: [],
     }
   },
@@ -53,8 +52,8 @@ export default {
     })
   },
   methods: {
-    ToCourseWareShow() {
-      router.push('/CourseWare/' + this.courseWareId);
+    ToCourseWareShow(point) {
+      router.push('/CourseWare/' + this.courseWareId + '/' + "point");
     }
   }
 }

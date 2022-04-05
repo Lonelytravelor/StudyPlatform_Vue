@@ -6,22 +6,7 @@
           <span style="font-size: 15px;">课件</span>
         </el-breadcrumb-item>
         <el-breadcrumb-item>
-          <el-select size="mini" v-model="value" placeholder="请选择" @change="showWare">
-            <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
-            </el-option>
-          </el-select>
-        </el-breadcrumb-item>
-        <el-breadcrumb-item>
-          <el-select size="mini" v-model="value" placeholder="请选择" @change="showWare">
-            <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
-            </el-option>
-          </el-select>
-        </el-breadcrumb-item>
-        <el-breadcrumb-item>
-          <el-select size="mini" v-model="value" placeholder="请选择" @change="showWare">
-            <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
-            </el-option>
-          </el-select>
+          {{ point }}
         </el-breadcrumb-item>
       </el-breadcrumb>
       <el-divider></el-divider>
@@ -37,7 +22,7 @@ import router from "@/router";
 
 export default {
   name: "CourseWare",
-  props: ["courseWareId"],
+  props: ["courseWareId","point"],
   data() {
     return {
       video: "",
